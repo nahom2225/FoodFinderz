@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { Grid, Button, ButtonGroup, Typography} from '@material-ui/core'
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   Route,
   Link,
