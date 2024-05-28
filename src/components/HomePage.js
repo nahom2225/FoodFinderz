@@ -64,7 +64,7 @@ export default function Home(props) {
     }
 
     return (
-        <Router>
+        <Router basename={process.env.PUBLIC_UR}>
             <Routes>
                 <Route exact path = "/" element={accountId != null ? (<Navigate replace to={`/frontpage`}/>) : renderHomePage()}/>
                 <Route path = '/create-account' element={<CreateAccount/>} />
