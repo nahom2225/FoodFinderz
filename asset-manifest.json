@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/FoodFinderz/static/css/main.9a6d1f18.css",
-    "main.js": "/FoodFinderz/static/js/main.ca7e81c6.js",
+    "main.js": "/FoodFinderz/static/js/main.45b8f2ff.js",
     "index.html": "/FoodFinderz/index.html",
     "main.9a6d1f18.css.map": "/FoodFinderz/static/css/main.9a6d1f18.css.map",
-    "main.ca7e81c6.js.map": "/FoodFinderz/static/js/main.ca7e81c6.js.map"
+    "main.45b8f2ff.js.map": "/FoodFinderz/static/js/main.45b8f2ff.js.map"
   },
   "entrypoints": [
     "static/css/main.9a6d1f18.css",
-    "static/js/main.ca7e81c6.js"
+    "static/js/main.45b8f2ff.js"
   ]
 }
