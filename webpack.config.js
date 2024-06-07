@@ -2,11 +2,12 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: "./FoodFinderz/frontend/src/index.js",
+  entry: "./src/index.js",
   output: {
-    //path: path.resolve(__dirname, "./static/frontend"),
-    path: path.resolve(__dirname, "./build"),
-    filename: "[name].js",
+    path: path.resolve(__dirname, "./static/frontend"),
+    filename: "main.js",
+    //path: path.resolve(__dirname, "./build"),
+    //filename: "[name].js",
   },
   module: {
     rules: [
