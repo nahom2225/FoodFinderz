@@ -1,9 +1,9 @@
 import React, { Component, useState, useEffect } from "react";
-import { Grid, Button, ButtonGroup, Typography, TextField, AppBar, Toolbar, Select, MenuItem, FormControl, InputLabel} from '@material-ui/core'
+import { Grid, Button, ButtonGroup, Typography, TextField, AppBar, Toolbar, Select, MenuItem, FormControl, InputLabel} from "@mui/material";
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 import {BrowserRouter as Router, Routes, Route, Link, Redirect, Navigate,} from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowBack, ArrowForward } from '@material-ui/icons';
+import { ArrowBack, ArrowForward } from '@mui/icons-material'
 import AccountCard from "./AccountCard";
 import PostCard from "./PostCard";
 import Geocode from "react-geocode";

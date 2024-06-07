@@ -1,10 +1,10 @@
 import React, { Component, useRef, useState, useEffect } from "react";
-import { Grid, Button, ButtonGroup, Typography, TextField, AppBar, Toolbar, Card, CardActionArea, CardContent} from '@material-ui/core'
+import { Grid, Button, ButtonGroup, Typography, TextField, AppBar, Toolbar, Card, CardActionArea, CardContent} from "@mui/material";
 import {BrowserRouter as Router, Routes, Route, Link, Redirect, Navigate,} from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowBack, ArrowForward } from '@material-ui/icons';
 import AccountCard from "./AccountCard";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/material/styles';
 
 export default function PostCardView(props) {
 

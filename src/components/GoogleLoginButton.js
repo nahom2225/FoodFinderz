@@ -1,9 +1,9 @@
 import React, { Component, useState, useEffect } from "react";
-import { Grid, Typography, Card, CardActionArea, CardContent, IconButton } from "@material-ui/core";
-import { ArrowUpward, ArrowDownward } from "@material-ui/icons";
+import { Grid, Typography, Card, CardActionArea, CardContent, IconButton } from "@mui/material";
+import { ArrowUpward, ArrowDownward } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import { green, red } from "@material-ui/core/colors";
+import { makeStyles } from "@mui/material/styles";
+import { green, red } from "@mui/material/colors";
 import { GoogleLogin } from 'react-google-login';
 
 export default function GoogleLoginButton(props) {

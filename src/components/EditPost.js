@@ -1,17 +1,17 @@
 import React, { Component, useState, useEffect} from "react";
-import { Grid, ButtonGroup, Typography, TextField, AppBar, Toolbar, Card, IconButton, LinearProgress, Box, Collapse} from '@material-ui/core'
+import { Grid, ButtonGroup, Typography, TextField, AppBar, Toolbar, Card, IconButton, LinearProgress, Box, Collapse} from "@mui/material";
 import {BrowserRouter as Router, Routes, Route, Link, Redirect, Navigate , useLocation} from "react-router-dom";
 import Autocomplete from 'react-google-autocomplete';
 import { useParams, useNavigate } from "react-router-dom";
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import CreateIcon from '@material-ui/icons/Create';
-import { makeStyles } from '@material-ui/core/styles';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import CreateIcon from '@mui/icons-material/Create';
+import { makeStyles } from '@mui/material/styles';
 import {withRouter} from "./withRouter";
 import AccountCard from "./AccountCard";
 import Divider from '@mui/material/Divider'
 import Button from "@mui/material/Button";
 import Alert from "@material-ui/lab/Alert";
-import { Title } from "@material-ui/icons";
+import { Title } from "@mui/icons-material";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
 export default function EditPost(props) {
