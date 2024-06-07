@@ -4,7 +4,6 @@ import {BrowserRouter as Router, Routes, Route, Link, Redirect, Navigate,} from 
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import AccountCard from "./AccountCard";
-import { makeStyles } from '@mui/styles';
 import { styled } from '@mui/material/styles';
 
 export default function PostCardView(props) {
