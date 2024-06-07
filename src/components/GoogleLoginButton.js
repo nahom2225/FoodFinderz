@@ -4,7 +4,7 @@ import { ArrowUpward, ArrowDownward } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/material/styles";
 import { green, red } from "@mui/material/colors";
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from '@react-oauth/google';
 
 export default function GoogleLoginButton(props) {
 
