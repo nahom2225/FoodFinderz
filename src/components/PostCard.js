@@ -3,51 +3,45 @@ import { Grid, Typography, Card, CardActionArea, CardContent, IconButton } from 
 import { ArrowUpward, ArrowDownward } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
+import { styled } from '@mui/material/styles';
 import { green, red } from "@mui/material/colors";
 
-const useStyles = makeStyles((theme) => ({
-    postCard: {
-        color: theme.palette.primary.main,
-        '&:hover': {
-        border: '3px solid #3f51b5',
-        borderRadius: '4px',
-        boxShadow: 'none'
-        },
-        border: '2px solid gray',
-        borderRadius: '10px',
-    },
-    postContent: {
-        paddingLeft: theme.spacing(0),
-        flexGrow: 1,
-    },
-    voteContainer: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#f1f1f1",
-        padding: theme.spacing(1),
-        borderTopLeftRadius: "10px",
-        borderBottomLeftRadius: "10px",
-    },
-    upVoteButton: {
-        color: theme.palette.primary.main,
-        '&:hover': {
-        backgroundColor: theme.palette.primary.light,
-        },
-    },
-    upVoteButtonClick: {
-        color: 'green'
-    },
-    downVoteButton: {
-        color: theme.palette.primary.main,
-        '&:hover': {
-        backgroundColor: theme.palette.secondary.light,
-        },
-    },
-    downVoteButtonClick: {
-        color: 'red'
-    },
+const StyledCard = styled(Card)(({ theme }) => ({
+  color: theme.palette.primary.main,
+  '&:hover': {
+    border: '3px solid #3f51b5',
+    borderRadius: '4px',
+    boxShadow: 'none'
+  },
+  border: '2px solid gray',
+  borderRadius: '10px',
+}));
+
+const StyledVoteContainer = styled(Grid)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: "#f1f1f1",
+  padding: theme.spacing(1),
+  borderTopLeftRadius: "10px",
+  borderBottomLeftRadius: "10px",
+}));
+
+const StyledPostContent = styled(Grid)(({ theme }) => ({
+  paddingLeft: theme.spacing(0),
+  flexGrow: 1,
+}));
+
+const StyledIconButton = styled(IconButton)(({ theme }) => ({
+  color: theme.palette.primary.main,
+  '&:hover': {
+    backgroundColor: theme.palette.primary.light,
+  },
+}));
+
+const StyledIconButtonClicked = styled(IconButton)(({ color }) => ({
+  color,
 }));
 
 export default function PostCard(props) {
@@ -127,29 +121,29 @@ export default function PostCard(props) {
   }
 
   return (
-    <Card className={classes.postCard}>
+    <StyledCard>
       <Grid container>
-        <Grid item xs = {2} className={classes.voteContainer}>
-          <IconButton onClick={handleUpVote} className = {upvote ? classes.upVoteButtonClick : classes.upVoteButton}>
+        <StyledVoteContainer item xs={2}>
+          <StyledIconButton onClick={handleUpVote} className={upvote ? 'clicked' : ''}>
             <ArrowUpward />
-          </IconButton>
+          </StyledIconButton>
           <Typography>{votes}</Typography>
-          <IconButton onClick={handleDownVote} className = {downvote ? classes.downVoteButtonClick : classes.downVoteButton}>
+          <StyledIconButton onClick={handleDownVote} className={downvote ? 'clicked' : ''}>
             <ArrowDownward />
-          </IconButton>
-        </Grid>
-        <Grid item xs = {10} className={classes.postContent}>
+          </StyledIconButton>
+        </StyledVoteContainer>
+        <StyledPostContent item xs={10}>
           <CardActionArea onClick={handleClick}>
             <CardContent>
               <Typography>Poster: {props.account_poster}</Typography>
               <Typography>Title: {props.title}</Typography>
               <Typography>Food: {props.food}</Typography>
               <Typography>Location: {props.location}</Typography>
-              <input type="range" class="form-range" min="0" max="10" step="1" id="food_left" value={props.food_left} disabled/>
+              <input type="range" className="form-range" min="0" max="10" step="1" id="food_left" value={props.food_left} disabled />
             </CardContent>
           </CardActionArea>
-        </Grid>
+        </StyledPostContent>
       </Grid>
-    </Card>
+    </StyledCard>
   );
 }

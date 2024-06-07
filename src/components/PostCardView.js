@@ -5,21 +5,22 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import AccountCard from "./AccountCard";
 import { makeStyles } from '@mui/styles';
+import { styled } from '@mui/material/styles';
 
 export default function PostCardView(props) {
 
-    const useStyles = makeStyles((theme) => ({
-        container: {
-          padding: theme.spacing(2),
-        },
-        item: {
-          marginBottom: theme.spacing(2),
-        },
-        label: {
-          fontWeight: "bold",
-          marginRight: theme.spacing(1),
-        },
-      }));
+    const Container = styled(Grid)(({ theme }) => ({
+      padding: theme.spacing(2),
+    }));
+    
+    const Item = styled(Grid)(({ theme }) => ({
+      marginBottom: theme.spacing(2),
+    }));
+    
+    const Label = styled(Typography)(({ theme }) => ({
+      fontWeight: "bold",
+      marginRight: theme.spacing(1),
+    }));
 
     const { post_id } = useParams();
     const [post, setPost] = useState({});
@@ -114,64 +115,56 @@ export default function PostCardView(props) {
       
 
       return (
-    <Grid container>
-          <AppBar position="static">
-            <Grid container alignItems="center">
-              <Grid item xs = {6}>
-                <Toolbar>
-                  <Typography variant="h4">Free Food Finderz</Typography>
-                </Toolbar>
-              </Grid>
-              <Grid item xs={6} align="right">
-                <AccountCard frontpage = {true} {...account}/>
-              </Grid>
+      <Grid container>
+        <AppBar position="static">
+          <Grid container alignItems="center">
+            <Grid item xs={6}>
+              <Toolbar>
+                <Typography variant="h4">Free Food Finderz</Typography>
+              </Toolbar>
             </Grid>
-          </AppBar>
-        <Grid container className={classes.container}>
-            <Grid item xs={12} sm={6} className={classes.item}>
-                <Typography className={classes.label}>Poster:</Typography>
-                <Typography>{post.account_poster}</Typography>
+            <Grid item xs={6} align="right">
+              <AccountCard frontpage={true} {...account} />
             </Grid>
-            <Grid item xs={12} sm={6} className={classes.item}>
-                <Typography className={classes.label}>Title:</Typography>
-                <Typography>{post.title}</Typography>
-            </Grid>
-            <Grid item xs={12} sm={6} className={classes.item}>
-                <Typography className={classes.label}>Food:</Typography>
-                <Typography>{post.food}</Typography>
-            </Grid>
-            <Grid item xs={12} sm={6} className={classes.item}>
-                <Typography className={classes.label}>Location:</Typography>
-                <Typography>{post.location}</Typography>
-            </Grid>
-            <Grid item xs={12} className={classes.item}>
-                <Typography className={classes.label}>Description:</Typography>
-                <Typography>{post.description}</Typography>
-            </Grid>
-            <Grid item xs={12} className={classes.item}>
-                {showDeleteButton && (
-                    <Button
-                        color="primary"
-                        variant="contained"
-                        onClick={deletePost}
-                    >
-                        Delete
-                    </Button>
-                )}
-            </Grid>
-            <Grid item xs={12} className={classes.item}>
-                {showDeleteButton && (
-                    <Button
-                        color="secondary"
-                        variant="contained"
-                        onClick={editPost}
-                    >
-                        Edit
-                    </Button>
-                )}
-            </Grid>
-        </Grid>
-    </Grid>
+          </Grid>
+        </AppBar>
+        <Container container>
+          <Item item xs={12} sm={6}>
+            <Label>Poster:</Label>
+            <Typography>{post.account_poster}</Typography>
+          </Item>
+          <Item item xs={12} sm={6}>
+            <Label>Title:</Label>
+            <Typography>{post.title}</Typography>
+          </Item>
+          <Item item xs={12} sm={6}>
+            <Label>Food:</Label>
+            <Typography>{post.food}</Typography>
+          </Item>
+          <Item item xs={12} sm={6}>
+            <Label>Location:</Label>
+            <Typography>{post.location}</Typography>
+          </Item>
+          <Item item xs={12}>
+            <Label>Description:</Label>
+            <Typography>{post.description}</Typography>
+          </Item>
+          <Item item xs={12}>
+            {showDeleteButton && (
+              <Button color="primary" variant="contained" onClick={deletePost}>
+                Delete
+              </Button>
+            )}
+          </Item>
+          <Item item xs={12}>
+            {showDeleteButton && (
+              <Button color="secondary" variant="contained" onClick={editPost}>
+                Edit
+              </Button>
+            )}
+          </Item>
+        </Container>
+      </Grid>
       )
 
 }

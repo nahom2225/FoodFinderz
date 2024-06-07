@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Routes, Route, Link, Redirect, Navigate } from 
 import { useParams, useNavigate } from "react-router-dom";
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import CreateIcon from '@mui/icons-material/Create';
-import { makeStyles } from '@mui/styles';
+import { styled } from '@mui/material/styles';
 import {withRouter} from "./withRouter";
 import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
@@ -16,14 +16,12 @@ function AccountCard(props) {
 
     const navigate = useNavigate();
 
-    const useStyles = makeStyles((theme) => ({
-    logoutButton: {
+    const StyledIconButton = styled(IconButton)(({ theme }) => ({
         color: theme.palette.primary.contrastText,
         '&:hover': {
-        backgroundColor: theme.palette.primary.light,
+          backgroundColor: theme.palette.primary.light,
         },
-    },
-    }));
+      }));
 
     const classes = useStyles();
 
@@ -46,29 +44,29 @@ function AccountCard(props) {
     }
 
     return(
-        <Grid container alignItems = "center" className = "nav-buttons">
-            <Grid item align = "center" xs = {3}>
-                <IconButton onClick={() => {navigate('/frontpage')}} className = {classes.logoutButton}>
-                    <HomeIcon color = "success"/>
-                </IconButton>
+        <Grid container alignItems="center" className="nav-buttons">
+            <Grid item align="center" xs={3}>
+                <StyledIconButton onClick={() => { navigate('/frontpage') }}>
+                    <HomeIcon color="success" />
+                </StyledIconButton>
             </Grid>
-            <Grid item align = "center" xs = {3}>
-                <IconButton onClick={() => {navigate('/create-post')}} className = {classes.logoutButton}>
-                    <CreateIcon color="success"/>
-                </IconButton>
+            <Grid item align="center" xs={3}>
+                <StyledIconButton onClick={() => { navigate('/create-post') }}>
+                    <CreateIcon color="success" />
+                </StyledIconButton>
             </Grid>
-            <Grid item align = "center" xs = {3}>
-                <IconButton onClick={handleLogout} className = {classes.logoutButton}>
-                    <ExitToAppIcon color="success"/>
-                </IconButton>
+            <Grid item align="center" xs={3}>
+                <StyledIconButton onClick={handleLogout}>
+                    <ExitToAppIcon color="success" />
+                </StyledIconButton>
             </Grid>
-            <Grid item align = "center" xs = {3}>
-                <IconButton onClick={handleAccountPage} className = {classes.logoutButton}>
-                    <PersonIcon/>
-                    <Typography variant="subtitle2" style={{ marginLeft: '5px' }}>
-                        {props.username}
-                    </Typography>
-                </IconButton>
+            <Grid item align="center" xs={3}>
+            <StyledIconButton onClick={handleAccountPage}>
+                <PersonIcon />
+                <Typography variant="subtitle2" style={{ marginLeft: '5px' }}>
+                {props.username}
+                </Typography>
+            </StyledIconButton>
             </Grid>
         </Grid>
     )
