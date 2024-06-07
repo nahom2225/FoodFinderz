@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import { Grid, Button, ButtonGroup, Typography, TextField, AppBar, Toolbar, Select, MenuItem, FormControl, InputLabel} from "@mui/material";
-import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
+import { Map, Marker, GoogleApiWrapper } from "@react-google-maps/api";
 import {BrowserRouter as Router, Routes, Route, Link, Redirect, Navigate,} from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowBack, ArrowForward } from '@mui/icons-material'
