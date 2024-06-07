@@ -54,7 +54,7 @@ export default function Login(props) {
                 password : password
             }),
         };
-        fetch("https://main--freefoodfinderz.netlify.app/api/login", requestOptions)
+        fetch("/api/login", requestOptions)
         .then((response) => {
             if (response.ok) {
                 response.json()
