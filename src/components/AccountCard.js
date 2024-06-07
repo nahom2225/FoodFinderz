@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Routes, Route, Link, Redirect, Navigate } from 
 import { useParams, useNavigate } from "react-router-dom";
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import CreateIcon from '@mui/icons-material/Create';
-import { makeStyles } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 import {withRouter} from "./withRouter";
 import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';

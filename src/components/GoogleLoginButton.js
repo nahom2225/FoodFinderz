@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from "react";
 import { Grid, Typography, Card, CardActionArea, CardContent, IconButton } from "@mui/material";
 import { ArrowUpward, ArrowDownward } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import { green, red } from "@mui/material/colors";
 import { GoogleLogin } from '@react-oauth/google';
 
