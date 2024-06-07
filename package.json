@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development --watch",
-    "start": "react-scripts --max-http-header-size=1024 start",
+    "start": "react-scripts --max-http-header-size=2048 start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
