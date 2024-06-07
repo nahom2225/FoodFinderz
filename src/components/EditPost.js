@@ -10,7 +10,7 @@ import {withRouter} from "./withRouter";
 import AccountCard from "./AccountCard";
 import Divider from '@mui/material/Divider'
 import Button from "@mui/material/Button";
-import Alert from "@material-ui/lab/Alert";
+import Alert from "@mui/lab/Alert";
 import { Title } from "@mui/icons-material";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
