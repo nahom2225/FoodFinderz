@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-_++mgv*)xp&dc^yo3$1o4&18ct!jd1-s@at9ikz2!(k%!io(hr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app"]
 
 
 # Application definition
@@ -75,6 +75,7 @@ AUTHENTICATION_BACKENDS = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://your-netlify-app.netlify.app",
+    "https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app",
 ]
 
 

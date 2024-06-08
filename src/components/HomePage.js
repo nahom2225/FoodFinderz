@@ -22,7 +22,7 @@ export default function Home(props) {
 
     useEffect(() => {
         // code to run on component mount
-        fetch('/api/account-in-session')
+        fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/account-in-session')
         .then((response) => response.json())
         .then((data) => {
             console.log("HOMEPAGE");
