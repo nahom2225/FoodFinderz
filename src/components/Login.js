@@ -54,7 +54,7 @@ export default function Login(props) {
                 password : password
             }),
         };
-        fetch("/api/login", requestOptions)
+        fetch("https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/login", requestOptions)
         .then((response) => {
             if (response.ok) {
                 response.json()
