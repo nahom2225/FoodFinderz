@@ -76,6 +76,8 @@ AUTHENTICATION_BACKENDS = [
 CORS_ALLOWED_ORIGINS = [
     "https://your-netlify-app.netlify.app",
     "https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:8000",
 ]
 
 
