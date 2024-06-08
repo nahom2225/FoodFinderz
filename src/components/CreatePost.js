@@ -29,7 +29,7 @@ export default function EditPost(props) {
     const [locationOptions, setLocationOptions] = useState([]);
   
     useEffect(() => {
-      fetch('/api/get-account').then((response) => {
+      fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-account').then((response) => {
         if (!response.ok){
           console.log("OH OOHHH")
           props.clearAccountIdCallback();
@@ -70,7 +70,7 @@ export default function EditPost(props) {
                 food_left: document.getElementById("food_left").value    
             }),
         };
-        fetch("/api/create-post", requestOptions)
+        fetch("https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/create-post", requestOptions)
         .then((response) => {
             if (response.ok) {
                 response.json().then((data) => {

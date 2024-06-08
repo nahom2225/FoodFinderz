@@ -56,7 +56,7 @@ export default function PostCard(props) {
         method: "GET",
         headers: { "Content-Type": "application/json"},
     };
-    fetch(`/api/get-post-vote/${props.post_id}`, requestOptions).
+    fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-post-vote/${props.post_id}`, requestOptions).
     then((response) => {
         if (!response.ok){
           console.log("OH OOHHH")          
@@ -84,7 +84,7 @@ export default function PostCard(props) {
             post_id : props.post_id               
         }),
     };
-    fetch(`/api/post-vote/${1}`, requestOptions).
+    fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/post-vote/${1}`, requestOptions).
     then((response) => {
         if (!response.ok){
           console.log("OH OOHHH")          
@@ -105,7 +105,7 @@ export default function PostCard(props) {
             post_id : props.post_id               
         }),
     };
-    fetch(`/api/post-vote/${0}`, requestOptions).
+    fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/post-vote/${0}`, requestOptions).
     then((response) => {
         if (!response.ok){
           console.log("OH OOHHH")          

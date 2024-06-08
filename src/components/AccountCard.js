@@ -26,7 +26,7 @@ function AccountCard(props) {
 
     const handleLogout = () => {
         console.log(props.username);
-        fetch('/api/logout', { method: 'GET' })
+        fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/logout', { method: 'GET' })
         .then(response => {
           if (response.ok) {
             console.log('User logged out successfully');

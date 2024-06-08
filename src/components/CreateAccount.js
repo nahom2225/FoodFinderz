@@ -61,7 +61,7 @@ export default function CreateAccount(props) {
         if (password != retypePassword) {
             setPassError('Passwords Do Not Match!');
         } else {
-        fetch("/api/create-account", requestOptions)
+        fetch("https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/create-account", requestOptions)
         .then((response) => {
             if (response.ok) {
                 response.json()
