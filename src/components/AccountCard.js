@@ -23,7 +23,6 @@ function AccountCard(props) {
         },
       }));
 
-    const classes = useStyles();
 
     const handleLogout = () => {
         console.log(props.username);

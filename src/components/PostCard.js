@@ -45,7 +45,6 @@ const StyledIconButtonClicked = styled(IconButton)(({ color }) => ({
 
 export default function PostCard(props) {
   const navigate = useNavigate();
-  const classes = useStyles();
 
   const[votes, setVotes] = useState(props.votes)
   const[upvote, setUpvote] = useState(false)
