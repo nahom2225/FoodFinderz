@@ -23,7 +23,6 @@ export default function PostCardView(props) {
 
     const { post_id } = useParams();
     const [post, setPost] = useState({});
-    const classes = useStyles();
     const[account, setAccount] = useState({});
     const [showDeleteButton, setShowDeleteButton] = useState(false);
 
