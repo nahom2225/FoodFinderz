@@ -29,19 +29,22 @@ export default function FrontPage(props) {
     // code to run on component mount
     fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-account').then((response) => {
       if (!response.ok){
+        console.log("retrieve account error")
         props.clearAccountIdCallback();
         navigate("/");
       } else {
         response.json().then((data) => {
           setAccount(data);
           setUsername(data.username);
+          console.log(data)
+          console.log(data.username)
         })
       }
     })
     // cleanup function to run on component unmount
     return () => {
     };
-  }, []);
+  }, [navigate, props]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -235,7 +238,7 @@ export default function FrontPage(props) {
 
   return (
     <Grid container justifyContent="space-around" style = {{height: "100vh"}}>
-      <AppBar className="app-bar" position="static">
+      <AppBar sx={{ backgroundColor: "#3f51b5" }} className="app-bar" position="static">
         <Grid container alignItems="center">
           <Grid item xs = {6}>
             <Toolbar>

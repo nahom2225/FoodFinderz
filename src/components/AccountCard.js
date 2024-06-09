@@ -46,17 +46,17 @@ function AccountCard(props) {
         <Grid container alignItems="center" className="nav-buttons">
             <Grid item align="center" xs={3}>
                 <StyledIconButton onClick={() => { navigate('/frontpage') }}>
-                    <HomeIcon color="success" />
+                    <HomeIcon sx={{ color: "#ffffff" }} color="success" />
                 </StyledIconButton>
             </Grid>
             <Grid item align="center" xs={3}>
                 <StyledIconButton onClick={() => { navigate('/create-post') }}>
-                    <CreateIcon color="success" />
+                    <CreateIcon sx={{ color: "#ffffff" }} color="success" />
                 </StyledIconButton>
             </Grid>
             <Grid item align="center" xs={3}>
                 <StyledIconButton onClick={handleLogout}>
-                    <ExitToAppIcon color="success" />
+                    <ExitToAppIcon sx={{ color: "#ffffff" }} color="success" />
                 </StyledIconButton>
             </Grid>
             <Grid item align="center" xs={3}>

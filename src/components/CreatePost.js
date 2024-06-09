@@ -93,7 +93,7 @@ export default function EditPost(props) {
 
     return (
         <div className = "blue-background">
-            <AppBar position="static">
+            <AppBar sx={{ backgroundColor: "#3f51b5" }} position="static">
                 <Grid container alignItems="center">
                     <Grid item xs = {6}>
                         <Toolbar>

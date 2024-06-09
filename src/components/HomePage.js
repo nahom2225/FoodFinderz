@@ -45,11 +45,11 @@ export default function Home(props) {
                     </Typography>
                 </Grid>
                 <Grid item xs = {12} align = "center">
-                    <ButtonGroup disableElevation variant="contained" color = "primary">
-                        <Button color="primary" href='/create-account'>
+                    <ButtonGroup disableElevation variant="contained">
+                        <Button sx={{ backgroundColor: "#3f51b5" }} color="primary" href='/create-account'>
                             Create Account
                         </Button>
-                        <Button color="secondary" href='/login'>
+                        <Button sx={{ backgroundColor: "#f50057" }} color="secondary" href='/login'>
                             Login
                         </Button>
                     </ButtonGroup>
