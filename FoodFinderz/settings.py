@@ -21,8 +21,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend', 'static'),
 ]
 
-SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_SAMESITE = 'Lax'
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
