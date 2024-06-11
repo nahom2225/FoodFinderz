@@ -29,7 +29,7 @@ export default function FrontPage(props) {
     // code to run on component mount
     fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-account', {
       headers: new Headers({
-        "ngrok-skip-browser-warning": "69420",
+        "ngrok-skip-browser-warning": "6024",
       }),
     }).then((response) => {
       if (!response.ok){
@@ -55,7 +55,7 @@ export default function FrontPage(props) {
       try {
         const response = await fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-posts/${page}/${postPerPage}`, {
           headers: new Headers({
-            "ngrok-skip-browser-warning": "69420",
+            "ngrok-skip-browser-warning": "6024",
           }),
         });
         if (!response.ok) {
