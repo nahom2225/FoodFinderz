@@ -6,3 +6,7 @@
   from = "/*"
   to = "/index.html"
   status = 200
+[[redirects]]
+  from = "/api/*"
+  to = "https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/:splat"
+  status = 200

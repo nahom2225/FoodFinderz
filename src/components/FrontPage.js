@@ -55,7 +55,8 @@ export default function FrontPage(props) {
           console.error("Error fetching posts");
           return;
         }
-  
+        console.log(response)
+        console.log(response.text())
         const data = await response.json();
         setPosts(data.results);
         setNumberOfPosts(data.count);
