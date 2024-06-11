@@ -27,11 +27,7 @@ export default function FrontPage(props) {
 
   useEffect(() => {
     // code to run on component mount
-    fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-account', {
-      headers: new Headers({
-        "ngrok-skip-browser-warning": "6024",
-      }),
-    }).then((response) => {
+    fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-account').then((response) => {
       if (!response.ok){
         console.log("retrieve account error")
         props.clearAccountIdCallback();
