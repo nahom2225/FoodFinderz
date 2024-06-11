@@ -62,6 +62,10 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+SESSION_ENGINE = [
+    'django.contrib.sessions.backends.db',
+]
+
 MIDDLEWARE = [
 
     'django.middleware.security.SecurityMiddleware',
