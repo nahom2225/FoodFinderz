@@ -23,10 +23,11 @@ function AccountCard(props) {
         },
       }));
 
-
     const handleLogout = () => {
         console.log(props.username);
-        fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/logout', { method: 'GET' })
+        fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/logout', { method: 'GET', headers: new Headers({
+            "ngrok-skip-browser-warning": "6024",
+          })})
         .then(response => {
           if (response.ok) {
             console.log('User logged out successfully');

@@ -34,7 +34,11 @@ export default function PostCardView(props) {
             method: "GET",
             headers: { "Content-Type": "application/json"},
         };
-        fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-post-info/${post_id}`, requestOptions)
+        fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-post-info/${post_id}`, requestOptions, {
+          headers: new Headers({
+            "ngrok-skip-browser-warning": "6024",
+          }),
+        })
         .then((response) => {
             if (response.ok) {
                 response.json()
@@ -54,7 +58,11 @@ export default function PostCardView(props) {
                     console.log("404")
             }
         })
-        fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-account').then((response) => {
+        fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-account', {
+          headers: new Headers({
+            "ngrok-skip-browser-warning": "6024",
+          }),
+        }).then((response) => {
             if (!response.ok){
               console.log("OH OOHHH")
               props.clearAccountIdCallback();
@@ -94,7 +102,11 @@ export default function PostCardView(props) {
               post_id : post.post_id               
           }),
         };
-        fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/delete-post`, requestOptions).
+        fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/delete-post`, requestOptions, {
+          headers: new Headers({
+            "ngrok-skip-browser-warning": "6024",
+          }),
+        }).
         then((response) => {
             if (!response.ok){
               console.log("OH OOHHH")          

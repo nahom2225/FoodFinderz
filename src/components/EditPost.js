@@ -32,7 +32,11 @@ export default function EditPost(props) {
     const [locationOptions, setLocationOptions] = useState([]);
   
     useEffect(() => {
-      fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-account').then((response) => {
+      fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-account', {
+        headers: new Headers({
+          "ngrok-skip-browser-warning": "6024",
+        }),
+      }).then((response) => {
         if (!response.ok){
           console.log("OH OOHHH")
           props.clearAccountIdCallback();
@@ -75,7 +79,11 @@ export default function EditPost(props) {
                 food_left: document.getElementById("food_left").value    
             }),
         };
-        fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/edit-post/${post_id}`, requestOptions)
+        fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/edit-post/${post_id}`, requestOptions, {
+            headers: new Headers({
+              "ngrok-skip-browser-warning": "6024",
+            }),
+          })
         .then((response) => {
             if (response.ok) {
                 response.json().then((data) => {

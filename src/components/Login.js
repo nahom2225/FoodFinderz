@@ -54,7 +54,11 @@ export default function Login(props) {
                 password : password
             }),
         };
-        fetch("https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/login", requestOptions)
+        fetch("https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/login", requestOptions, {
+            headers: new Headers({
+              "ngrok-skip-browser-warning": "6024",
+            }),
+          })
         .then((response) => {
             if (response.ok) {
                 response.json()
