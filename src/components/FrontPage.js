@@ -27,7 +27,11 @@ export default function FrontPage(props) {
 
   useEffect(() => {
     // code to run on component mount
-    fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-account').then((response) => {
+    fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-account', {
+      headers: new Headers({
+        "ngrok-skip-browser-warning": "69420",
+      }),
+    }).then((response) => {
       if (!response.ok){
         console.log("retrieve account error")
         props.clearAccountIdCallback();
@@ -49,7 +53,11 @@ export default function FrontPage(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-posts/${page}/${postPerPage}`);
+        const response = await fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-posts/${page}/${postPerPage}`, {
+          headers: new Headers({
+            "ngrok-skip-browser-warning": "69420",
+          }),
+        });
         if (!response.ok) {
           // Handle error if needed
           console.error("Error fetching posts");
