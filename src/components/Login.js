@@ -9,7 +9,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
-import Alert from "@mui/lab/Alert";
+import { Alert } from '@mui/material';
 import { getOptionGroupUnstyledUtilityClass } from "@mui/base";
 import GoogleLoginButton from './GoogleLoginButton';
 
