@@ -23,7 +23,7 @@ export default function FrontPage(props) {
   const [postPerPage, setPostPerPage] = useState(5);
   const [pageOffset, setPageOffset] = useState(0);
 
-  Geocode.setApiKey("AIzaSyBGClyq1L6HGnnlZZsYxxoQXaqdlKgsMXY");
+  //Geocode.setApiKey("AIzaSyB9XVnywutDApvjuKIIFPesDyHPmusHuxo");
 
   useEffect(() => {
     // code to run on component mount
@@ -167,7 +167,7 @@ export default function FrontPage(props) {
   let map;
 
   const loader = new Loader({
-    apiKey: "AIzaSyBGClyq1L6HGnnlZZsYxxoQXaqdlKgsMXY",
+    apiKey: "AIzaSyB9XVnywutDApvjuKIIFPesDyHPmusHuxo",
     version: "weekly",
   });
   
