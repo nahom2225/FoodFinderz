@@ -87,8 +87,12 @@ class LoginAccountView(APIView):
                     account = queryset[0]
                     if account.check_password(password):
                         self.request.session['account_id'] = account.account_id
+                        self.request.session.save() 
                         account.last_login = timezone.now()
                         account.current_session = self.request.session.session_key
+                        print(self.request.session)
+                        print(self.request.session.keys())
+                        print(self.request.session['account_id'])
                         account.save(update_fields=['current_session', 'last_login'])
                         return Response(LoginAccountSerializer(account).data, status=status.HTTP_200_OK)
                     elif password == '':
@@ -112,6 +116,7 @@ class GetAccount(APIView):
     lookup_url_kwarg = 'account_id'
 
     def get(self, request, format = None):
+        print(self.request.session.keys())
         account_id = self.request.session['account_id']
         if account_id != None:
             account = Account.objects.filter(account_id=account_id)
