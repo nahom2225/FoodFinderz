@@ -15,6 +15,7 @@ export default withRouter(AccountCard);
 function AccountCard(props) {
 
     const navigate = useNavigate();
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     const StyledIconButton = styled(IconButton)(({ theme }) => ({
         color: theme.palette.primary.contrastText,
@@ -25,7 +26,7 @@ function AccountCard(props) {
 
     const handleLogout = () => {
         console.log(props.username);
-        fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/logout', { method: 'GET', headers: new Headers({
+        fetch(`${backendUrl}/api/logout`, { method: 'GET', headers: new Headers({
             "ngrok-skip-browser-warning": "6024",
           })})
         .then(response => {

@@ -15,6 +15,7 @@ import GoogleLoginButton from './GoogleLoginButton';
 
 export default function Login(props) {
     const navigate = useNavigate();
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     const[username, setUsername] = useState('');
     const[password, setPassword] = useState('');
@@ -54,7 +55,7 @@ export default function Login(props) {
                 password : password
             }),
         };
-        fetch("https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/login", requestOptions, {
+        fetch(`${backendUrl}/api/login`, requestOptions, {
             headers: new Headers({
               "ngrok-skip-browser-warning": "6024",
             }),

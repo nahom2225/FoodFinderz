@@ -6,6 +6,8 @@ import { styled } from '@mui/material/styles';
 import { green, red } from "@mui/material/colors";
 
 const StyledCard = styled(Card)(({ theme }) => ({
+  
+
   color: theme.palette.primary.main,
   '&:hover': {
     border: '3px solid #3f51b5',
@@ -45,7 +47,8 @@ const StyledIconButtonClicked = styled(IconButton)(({ color }) => ({
 
 export default function PostCard(props) {
   const navigate = useNavigate();
-
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+  
   const[votes, setVotes] = useState(props.votes)
   const[upvote, setUpvote] = useState(false)
   const[downvote, setDownvote] = useState(false)
@@ -56,7 +59,7 @@ export default function PostCard(props) {
         method: "GET",
         headers: { "Content-Type": "application/json"},
     };
-    fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-post-vote/${props.post_id}`, requestOptions, {
+    fetch(`${backendUrl}/api/get-post-vote/${props.post_id}`, requestOptions, {
       headers: new Headers({
         "ngrok-skip-browser-warning": "6024",
       }),
@@ -88,7 +91,7 @@ export default function PostCard(props) {
             post_id : props.post_id               
         }),
     };
-    fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/post-vote/${1}`, requestOptions, {
+    fetch(`${backendUrl}/api/post-vote/${1}`, requestOptions, {
       headers: new Headers({
         "ngrok-skip-browser-warning": "6024",
       }),
@@ -113,7 +116,7 @@ export default function PostCard(props) {
             post_id : props.post_id               
         }),
     };
-    fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/post-vote/${0}`, requestOptions, {
+    fetch(`${backendUrl}/api/post-vote/${0}`, requestOptions, {
       headers: new Headers({
         "ngrok-skip-browser-warning": "6024",
       }),

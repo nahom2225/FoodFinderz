@@ -13,6 +13,7 @@ import GoogleLoginButton from './GoogleLoginButton';
 
 export default function CreateAccount(props) {
     const navigate = useNavigate();
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     const[accountId, setaAccountId] = useState('');
     const[username, setUsername] = useState('');
@@ -61,7 +62,7 @@ export default function CreateAccount(props) {
         if (password != retypePassword) {
             setPassError('Passwords Do Not Match!');
         } else {
-        fetch("https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/create-account", requestOptions, {
+        fetch(`${backendUrl}/api/create-account`, requestOptions, {
             headers: new Headers({
               "ngrok-skip-browser-warning": "6024",
             }),

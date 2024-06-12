@@ -8,6 +8,8 @@ import { styled } from '@mui/material/styles';
 
 export default function PostCardView(props) {
 
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
     const Container = styled(Grid)(({ theme }) => ({
       padding: theme.spacing(2),
     }));
@@ -34,7 +36,7 @@ export default function PostCardView(props) {
             method: "GET",
             headers: { "Content-Type": "application/json"},
         };
-        fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-post-info/${post_id}`, requestOptions, {
+        fetch(`${backendUrl}/api/get-post-info/${post_id}`, requestOptions, {
           headers: new Headers({
             "ngrok-skip-browser-warning": "6024",
           }),
@@ -58,7 +60,7 @@ export default function PostCardView(props) {
                     console.log("404")
             }
         })
-        fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-account', {
+        fetch(`${backendUrl}/api/get-account`, {
           headers: new Headers({
             "ngrok-skip-browser-warning": "6024",
           }),
@@ -102,7 +104,7 @@ export default function PostCardView(props) {
               post_id : post.post_id               
           }),
         };
-        fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/delete-post`, requestOptions, {
+        fetch(`${backendUrl}/api/delete-post`, requestOptions, {
           headers: new Headers({
             "ngrok-skip-browser-warning": "6024",
           }),

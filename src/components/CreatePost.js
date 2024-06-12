@@ -18,6 +18,7 @@ import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 export default function EditPost(props) {
 
     const navigate = useNavigate();
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     const [username, setUsername] = useState('');
     const [account, setAccount] = useState({});
@@ -29,7 +30,7 @@ export default function EditPost(props) {
     const [locationOptions, setLocationOptions] = useState([]);
   
     useEffect(() => {
-      fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-account', {
+      fetch(`${backendUrl}/api/get-account`, {
         headers: new Headers({
           "ngrok-skip-browser-warning": "6024",
         }),
@@ -74,7 +75,7 @@ export default function EditPost(props) {
                 food_left: document.getElementById("food_left").value    
             }),
         };
-        fetch("https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/create-post", requestOptions, {
+        fetch(`${backendUrl}/api/create-post`, requestOptions, {
             headers: new Headers({
               "ngrok-skip-browser-warning": "6024",
             }),

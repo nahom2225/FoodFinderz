@@ -13,6 +13,7 @@ import { Loader } from "@googlemaps/js-api-loader"
 export default function FrontPage(props) {
     
   const navigate = useNavigate();
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   const [username, setUsername] = useState('');
   const [account, setAccount] = useState({});
@@ -27,7 +28,7 @@ export default function FrontPage(props) {
 
   useEffect(() => {
     // code to run on component mount
-    fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-account', {
+    fetch(`${backendUrl}/api/get-account`, {
       headers: new Headers({
         "ngrok-skip-browser-warning": "6024",
       }),
@@ -50,7 +51,7 @@ export default function FrontPage(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/get-your-posts/${username}/${page}/${postPerPage}`, {
+        const response = await fetch(`${backendUrl}/api/get-your-posts/${username}/${page}/${postPerPage}`, {
           headers: new Headers({
             "ngrok-skip-browser-warning": "6024",
           }),

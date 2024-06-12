@@ -19,10 +19,11 @@ import EditPost from "./EditPost";
 export default function Home(props) {
 
     const[accountId, setAccountId] = useState(null);
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     useEffect(() => {
         // code to run on component mount
-        fetch('https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/account-in-session', {
+        fetch(`${backendUrl}/api/account-in-session`, {
             headers: new Headers({
               "ngrok-skip-browser-warning": "6024",
             }),
