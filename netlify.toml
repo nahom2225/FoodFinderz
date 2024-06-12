@@ -22,5 +22,4 @@
 [[headers]]
   for = "/api/*"
   [headers.values]
-    Set-Cookie = "sessionid; SameSite=None; Secure"
-    Set-Cookie = "csrftoken; SameSite=None; Secure"
+    Set-Cookie = "sessionid=None; SameSite=None; Secure, csrftoken=None; SameSite=None; Secure"
