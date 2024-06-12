@@ -10,3 +10,14 @@
   from = "/api/*"
   to = "https://d035-2601-646-401-2670-3deb-26d5-e74e-521.ngrok-free.app/api/:splat"
   status = 200
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS, DELETE, PUT"
+    Access-Control-Allow-Headers = "Origin, Content-Type, X-Auth-Token, Authorization, ngrok-skip-browser-warning"
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Set-Cookie = "sessionid; SameSite=Lax; Secure"
+    Set-Cookie = "csrftoken; SameSite=Lax; Secure"
