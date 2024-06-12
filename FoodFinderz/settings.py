@@ -66,8 +66,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 SESSION_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SAMESITE = 'None'
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+
 
 
 MIDDLEWARE = [
@@ -103,6 +102,7 @@ CORS_ALLOW_HEADERS = [
     'x-csrftoken',
     'x-requested-with',
     'ngrok-skip-browser-warning',
+    'SameSite',
 ]
 
 CORS_ALLOW_METHODS = [
