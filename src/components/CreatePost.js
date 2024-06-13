@@ -19,6 +19,7 @@ export default function EditPost(props) {
 
     const navigate = useNavigate();
     const backendUrl = process.env.REACT_APP_BACKEND_URL;
+    const mapsApi = process.env.REACT_APP_BACKEND_URL;
 
     const [username, setUsername] = useState('');
     const [account, setAccount] = useState({});
@@ -182,7 +183,7 @@ export default function EditPost(props) {
                     </Grid>
                     <Grid item xs = {12} className="auto-complete-box"> 
                         <GooglePlacesAutocomplete
-                            apiKey = "AIzaSyBGClyq1L6HGnnlZZsYxxoQXaqdlKgsMXY"
+                            apiKey = {mapsApi}
                             selectProps={{
                                 locationData,
                                 onChange: setLocationData,

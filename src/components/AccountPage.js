@@ -14,6 +14,7 @@ export default function FrontPage(props) {
     
   const navigate = useNavigate();
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
+  const mapsApi = process.env.REACT_APP_BACKEND_URL;
 
   const [username, setUsername] = useState('');
   const [account, setAccount] = useState({});
@@ -24,7 +25,7 @@ export default function FrontPage(props) {
   const [postPerPage, setPostPerPage] = useState(5);
   const [pageOffset, setPageOffset] = useState(0);
 
-  Geocode.setApiKey("AIzaSyBGClyq1L6HGnnlZZsYxxoQXaqdlKgsMXY");
+  Geocode.setApiKey(mapsApi);
 
   useEffect(() => {
     // code to run on component mount
@@ -174,7 +175,7 @@ export default function FrontPage(props) {
   let map;
 
   const loader = new Loader({
-    apiKey: "AIzaSyBGClyq1L6HGnnlZZsYxxoQXaqdlKgsMXY",
+    apiKey: mapsApi,
     version: "weekly",
   });
   
