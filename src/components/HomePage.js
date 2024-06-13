@@ -15,7 +15,6 @@ import CreatePost from "./CreatePost";
 import PostCardView from "./PostCardView";
 import AccountPage from "./AccountPage";
 import EditPost from "./EditPost";
-//require('dotenv').config();
 
 export default function Home(props) {
 
