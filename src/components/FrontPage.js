@@ -13,7 +13,7 @@ import { DisabledByDefaultRounded } from "@mui/icons-material";
 export default function FrontPage(props) {
     
   const navigate = useNavigate();
-  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+  const backendUrl = "https://0bfe-2601-646-401-2670-9d57-f41f-a3b7-101.ngrok-free.app ";
 
   const [username, setUsername] = useState('');
   const [account, setAccount] = useState({});
