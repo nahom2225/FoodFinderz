@@ -48,7 +48,7 @@ const StyledIconButtonClicked = styled(IconButton)(({ color }) => ({
 export default function PostCard(props) {
   const navigate = useNavigate();
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
-  
+
   const[votes, setVotes] = useState(props.votes)
   const[upvote, setUpvote] = useState(false)
   const[downvote, setDownvote] = useState(false)
