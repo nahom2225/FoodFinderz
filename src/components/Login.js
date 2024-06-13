@@ -15,7 +15,7 @@ import GoogleLoginButton from './GoogleLoginButton';
 
 export default function Login(props) {
     const navigate = useNavigate();
-    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+    const backendUrl = "https://0bfe-2601-646-401-2670-9d57-f41f-a3b7-101.ngrok-free.app";
 
     const[username, setUsername] = useState('');
     const[password, setPassword] = useState('');
