@@ -91,7 +91,7 @@ AUTHENTICATION_BACKENDS = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://0bfe-2601-646-401-2670-9d57-f41f-a3b7-101.ngrok-free.app ",
+    "https://0bfe-2601-646-401-2670-9d57-f41f-a3b7-101.ngrok-free.app",
     "https://main--freefoodfinderz.netlify.app",
     "http://127.0.0.1:8000",
 ]
