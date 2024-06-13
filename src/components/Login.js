@@ -64,6 +64,7 @@ export default function Login(props) {
             if (response.ok) {
                 response.json()
                 .then((data) => {navigate(`/frontpage`);
+                                console.log(backendUrl)
                                 console.log(data);})
             } else if (response.status === 400) {
                 response.json().then((data) => {setError(data.error)
