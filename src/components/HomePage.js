@@ -19,7 +19,7 @@ import EditPost from "./EditPost";
 export default function Home(props) {
 
     const[accountId, setAccountId] = useState(null);
-    const backendUrl = "https://0bfe-2601-646-401-2670-9d57-f41f-a3b7-101.ngrok-free.app";
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     useEffect(() => {
         // code to run on component mount
