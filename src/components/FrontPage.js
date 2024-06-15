@@ -30,7 +30,6 @@ export default function FrontPage(props) {
   useEffect(() => {
     // code to run on component mount
     fetch(`${backendUrl}/api/get-account`, {
-      credentials: 'include',
       headers: new Headers({
         "ngrok-skip-browser-warning": "6024",
         "SameSite": "None"
@@ -58,7 +57,6 @@ export default function FrontPage(props) {
     const fetchData = async () => {
       try {
         const response = await fetch(`${backendUrl}/api/get-posts/${page}/${postPerPage}`, {
-          credentials: 'include',
           headers: new Headers({
             "ngrok-skip-browser-warning": "6024"
           }),

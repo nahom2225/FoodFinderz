@@ -24,7 +24,6 @@ export default function Home(props) {
     useEffect(() => {
         // code to run on component mount
         fetch(`${backendUrl}/api/account-in-session`, {
-            credentials: 'include',
             headers: new Headers({
               "ngrok-skip-browser-warning": "6024",
             }),
