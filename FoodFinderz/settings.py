@@ -36,7 +36,10 @@ ALLOWED_HOSTS = [
     "0bfe-2601-646-401-2670-9d57-f41f-a3b7-101.ngrok-free.app",
     "main--freefoodfinderz.netlify.app",
     "localhost",
-    "127.0.0.1"
+    "127.0.0.1",
+    "www.freefoodfinderz.com",
+    "freefoodfinderz.com",
+    "backend.freefoodfinderz.com",
                  ]
 
 
@@ -92,6 +95,9 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
+    "https://www.freefoodfinderz.com",
+    "https://freefoodfinderz.com",
+    "https://backend.freefoodfinderz.com",
     "http://localhost:3000",
     "https://0bfe-2601-646-401-2670-9d57-f41f-a3b7-101.ngrok-free.app",
     "https://main--freefoodfinderz.netlify.app",
