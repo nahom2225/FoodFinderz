@@ -60,6 +60,7 @@ export default function PostCard(props) {
         headers: { "Content-Type": "application/json"},
     };
     fetch(`${backendUrl}/api/get-post-vote/${props.post_id}`, requestOptions, {
+      credentials: 'include',  
       headers: new Headers({
         "ngrok-skip-browser-warning": "6024",
       }),

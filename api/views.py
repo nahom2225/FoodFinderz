@@ -116,6 +116,7 @@ class GetAccount(APIView):
     lookup_url_kwarg = 'account_id'
 
     def get(self, request, format = None):
+        print("HEREEEE")
         print(self.request.session.keys())
         account_id = self.request.session['account_id']
         if account_id != None:
@@ -254,6 +255,8 @@ class GetPost(APIView):
     lookup_url_kwarg = 'account_id'
 
     def get(self, request, post_id, format = None):
+        print("HEREEEE")
+        print(self.request.session.keys())
         account_id = self.request.session[self.lookup_url_kwarg]  
         print(account_id)      
         if account_id != None:
@@ -332,6 +335,8 @@ class VoteCheck(APIView):
     def get(self, request, post_id, format = None):
         if not self.request.session.exists(self.request.session.session_key):
                 self.request.session.create()
+        print("HEREEEE")
+        print(self.request.session.keys())
         account_id = self.request.session[self.lookup_url_kwarg]  
         print(account_id)      
         if account_id != None:
