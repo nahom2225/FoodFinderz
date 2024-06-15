@@ -67,11 +67,12 @@ INSTALLED_APPS = [
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
-SESSION_COOKIE_SAMESITE = 'Lax'
-CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 MIDDLEWARE = [
@@ -112,8 +113,6 @@ CORS_ALLOW_HEADERS = [
     'ngrok-skip-browser-warning',
     'SameSite',
 ]
-
-CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_METHODS = [
     'GET',

@@ -56,6 +56,7 @@ export default function Login(props) {
             }),
         };
         fetch(`${backendUrl}/api/login`, requestOptions, {
+            credentials: 'include',
             headers: new Headers({
               "ngrok-skip-browser-warning": "6024",
             }),
