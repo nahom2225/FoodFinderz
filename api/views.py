@@ -21,7 +21,7 @@ from rest_framework.generics import RetrieveUpdateDestroyAPIView
 
 
 # Create your views here.
-
+CORS_ALLOW_CREDENTIALS = True
 
 class AccountView(generics.ListAPIView):
     queryset = Account.objects.all()
