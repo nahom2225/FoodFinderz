@@ -74,6 +74,8 @@ CSRF_COOKIE_SECURE = True
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+DOMAIN_NAME = "freefoodfinderz.com"
+
 SESSION_COOKIE_DOMAIN= ".freefoodfinderz.com"
 
 MIDDLEWARE = [
