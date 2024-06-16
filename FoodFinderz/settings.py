@@ -69,13 +69,14 @@ INSTALLED_APPS = [
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://localhost:6379/1',
+        'LOCATION': 'redis://127.0.0.1:6379/1',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
     }
 }
 
+SESSION_COOKIE_HTTPONLY = False
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = 'default'
 
@@ -94,8 +95,8 @@ CORS_ALLOW_CREDENTIALS = True
 
 DOMAIN_NAME = "freefoodfinderz.com"
 
-SESSION_COOKIE_DOMAIN= ".freefoodfinderz.com"
-CSRF_COOKIE_DOMAIN = ".freefoodfinderz.com"
+#SESSION_COOKIE_DOMAIN= ".freefoodfinderz.com"
+#CSRF_COOKIE_DOMAIN = ".freefoodfinderz.com"
 
 MIDDLEWARE = [
 

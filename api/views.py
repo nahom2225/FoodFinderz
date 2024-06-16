@@ -87,6 +87,7 @@ class LoginAccountView(APIView):
                     account = queryset[0]
                     if account.check_password(password):
                         self.request.session['account_id'] = account.account_id
+                        self.request.session.modified = True
                         self.request.session.save() 
                         account.last_login = timezone.now()
                         account.current_session = self.request.session.session_key
