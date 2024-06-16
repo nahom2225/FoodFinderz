@@ -81,6 +81,7 @@ CORS_ALLOW_CREDENTIALS = True
 DOMAIN_NAME = "freefoodfinderz.com"
 
 SESSION_COOKIE_DOMAIN= ".freefoodfinderz.com"
+CSRF_COOKIE_DOMAIN = ".freefoodfinderz.com"
 
 MIDDLEWARE = [
 
@@ -88,7 +89,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'api.middleware.CustomCorsMiddleware',
+    'path.to.middleware.CustomCorsMiddleware', 
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
