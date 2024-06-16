@@ -63,6 +63,7 @@ export default function CreateAccount(props) {
             setPassError('Passwords Do Not Match!');
         } else {
         fetch(`${backendUrl}/api/create-account`, requestOptions, {
+            credentials: 'include',  
             headers: new Headers({
               "ngrok-skip-browser-warning": "6024",
             }),

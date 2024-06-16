@@ -37,6 +37,7 @@ export default function PostCardView(props) {
             headers: { "Content-Type": "application/json"},
         };
         fetch(`${backendUrl}/api/get-post-info/${post_id}`, requestOptions, {
+          credentials: 'include',  
           headers: new Headers({
             "ngrok-skip-browser-warning": "6024",
           }),
@@ -105,6 +106,7 @@ export default function PostCardView(props) {
           }),
         };
         fetch(`${backendUrl}/api/delete-post`, requestOptions, {
+          credentials: 'include',  
           headers: new Headers({
             "ngrok-skip-browser-warning": "6024",
           }),

@@ -26,7 +26,10 @@ function AccountCard(props) {
 
     const handleLogout = () => {
         console.log(props.username);
-        fetch(`${backendUrl}/api/logout`, { method: 'GET', headers: new Headers({
+        fetch(`${backendUrl}/api/logout`, { 
+            method: 'GET', 
+            credentials: 'include',  
+            headers: new Headers({
             "ngrok-skip-browser-warning": "6024",
           })})
         .then(response => {

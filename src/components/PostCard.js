@@ -93,6 +93,7 @@ export default function PostCard(props) {
         }),
     };
     fetch(`${backendUrl}/api/post-vote/${1}`, requestOptions, {
+      credentials: 'include',  
       headers: new Headers({
         "ngrok-skip-browser-warning": "6024",
       }),
@@ -118,6 +119,7 @@ export default function PostCard(props) {
         }),
     };
     fetch(`${backendUrl}/api/post-vote/${0}`, requestOptions, {
+      credentials: 'include',  
       headers: new Headers({
         "ngrok-skip-browser-warning": "6024",
       }),

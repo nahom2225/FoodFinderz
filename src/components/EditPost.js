@@ -35,6 +35,7 @@ export default function EditPost(props) {
   
     useEffect(() => {
       fetch(`${backendUrl}/api/get-account`, {
+        credentials: 'include',  
         headers: new Headers({
           "ngrok-skip-browser-warning": "6024",
         }),
@@ -82,6 +83,7 @@ export default function EditPost(props) {
             }),
         };
         fetch(`${backendUrl}/api/edit-post/${post_id}`, requestOptions, {
+            credentials: 'include',  
             headers: new Headers({
               "ngrok-skip-browser-warning": "6024",
             }),
