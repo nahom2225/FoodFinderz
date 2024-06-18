@@ -64,7 +64,7 @@ export default function CreateAccount(props) {
         return cookieValue;
     }
     
-    const csrftoken = getCookie('csrftoken') || window.CSRF_TOKEN;
+    const csrftoken = window.CSRF_TOKEN;
 
     function handleAccountButtonPressed () {
         const requestOptions = {
