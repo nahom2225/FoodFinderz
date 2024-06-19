@@ -23,9 +23,20 @@ export default function CreateAccount(props) {
     const[user_error, setUserError] = useState('');
     const[pass_error, setPassError] = useState('');
     const[showPassword, setShowPassword] = useState(false);
+    const[csrftoken, setCsrftoken] = useState(0)
     
 
     useEffect(() => {
+        fetch(`${backendUrl}/api/getCSRFToken`, {
+            credentials: 'include',  
+          }).then((response) => {
+            if (!response.ok){
+                console.log("OH OOHHH")
+            } else {
+                const jsonResponse = response.json();
+                console.log("CSRFToken: ", jsonResponse["token"]);
+                setCsrftoken(jsonResponse["token"])
+            }})
         const script = document.createElement('script');
         script.src = 'https://accounts.google.com/gsi/client';
         script.async = true;
@@ -64,7 +75,7 @@ export default function CreateAccount(props) {
         return cookieValue;
     }
     
-    const csrftoken = getCookie('csrftoken');
+    //const csrftoken = getCookie('csrftoken');
 
     function handleAccountButtonPressed () {
         console.log(csrftoken)
