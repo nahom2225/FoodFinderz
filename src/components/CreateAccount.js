@@ -67,6 +67,7 @@ export default function CreateAccount(props) {
     const csrftoken = getCookie('csrftoken');
 
     function handleAccountButtonPressed () {
+        console.log(csrftoken)
         const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json",
