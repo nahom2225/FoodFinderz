@@ -50,11 +50,11 @@ export default function CreateAccount(props) {
         setRetypePassword(event.target.value);
     }
     function getCookie(name) {
-        let cookieValue = null;
+        var cookieValue = null;
         if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
                 if (cookie.substring(0, name.length + 1) === (name + '=')) {
                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                     break;
@@ -64,7 +64,7 @@ export default function CreateAccount(props) {
         return cookieValue;
     }
     
-    const csrftoken = window.CSRF_TOKEN;
+    const csrftoken = getCookie('csrftoken');
 
     function handleAccountButtonPressed () {
         const requestOptions = {
