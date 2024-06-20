@@ -90,7 +90,7 @@ CSRF_COOKIE_SECURE = True
 
 
 CSRF_COOKIE_NAME = 'csrftoken'
-CSRF_HEADER_NAME = 'X-CSRFToken'
+CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
 # Add your domain here
 SESSION_COOKIE_DOMAIN = ".freefoodfinderz.com"
 CSRF_COOKIE_DOMAIN = ".freefoodfinderz.com"

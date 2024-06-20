@@ -89,6 +89,7 @@ export default function CreateAccount(props) {
             headers: { "Content-Type": "application/json",
             'X-CSRFToken': csrftoken
             },
+            credentials: 'include',
             body: JSON.stringify({
                 username : username,
                 password : password
