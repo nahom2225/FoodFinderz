@@ -29,15 +29,19 @@ export default function CreateAccount(props) {
 
     useEffect(() => {
         fetch(`${backendUrl}/api/getCSRFToken`, {
-            credentials: 'include',  
-          }).then((response) => {
+            credentials: 'include',
+        }).then((response) => {
             if (!response.ok){
-                console.log("OH OOHHH")
+                console.log("OH OOHHH");
             } else {
-                const jsonResponse = response.json();
-                console.log("CSRFToken: ", jsonResponse["token"]);
-                setCsrftoken(jsonResponse["token"])
-            }})
+                response.json().then((jsonResponse) => {
+                    console.log("CSRFToken: ", jsonResponse["token"]);
+                    setCsrftoken(jsonResponse["token"]);
+                });
+            }
+        }).catch((error) => {
+            console.error("Error fetching CSRF token:", error);
+        });
         const script = document.createElement('script');
         script.src = 'https://accounts.google.com/gsi/client';
         script.async = true;
