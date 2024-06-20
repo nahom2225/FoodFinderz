@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
 import GoogleLoginButton from './GoogleLoginButton';
-import DjangoCSRFToken from 'django-react-csrftoken';
+//import DjangoCSRFToken from 'django-react-csrftoken';
 
 export default function CreateAccount(props) {
     const navigate = useNavigate();
