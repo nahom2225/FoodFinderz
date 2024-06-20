@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
 import GoogleLoginButton from './GoogleLoginButton';
+import DjangoCSRFToken from 'django-react-csrftoken';
 
 export default function CreateAccount(props) {
     const navigate = useNavigate();
@@ -121,72 +122,75 @@ export default function CreateAccount(props) {
 
     return (
         <div className = "center">
-            <Grid container spacing = {3}>
-                <Grid item xs = {12} align = "center">
-                    <Typography variant = "h3" compact = "h3">
-                        Create Account!
-                    </Typography>
+            <form>
+                <DjangoCSRFToken />
+                <Grid container spacing = {3}>
+                    <Grid item xs = {12} align = "center">
+                        <Typography variant = "h3" compact = "h3">
+                            Create Account!
+                        </Typography>
+                    </Grid>
+                    <Grid item xs = {12} align = "center">
+                        <TextField
+                            error={user_error}
+                            label="Username"
+                            placeholder="Enter a New Username"
+                            value={username}
+                            helperText={user_error}
+                            variant="outlined"
+                            onChange={handleUsernameChange}
+                        />
+                    </Grid>
+                    <Grid item xs = {12} align = "center">
+                        <TextField
+                            error={pass_error}
+                            type = {showPassword ? "test" : "password"}
+                            label="Password"
+                            placeholder="Enter a Password"
+                            value={password}
+                            helperText={pass_error}
+                            variant="outlined"
+                            onChange={handlePasswordChange}
+                        />
+                    </Grid>             
+                    <Grid item xs = {12} align = "center">
+                        <TextField
+                            error={pass_error}
+                            type = {showPassword ? "test" : "password"}
+                            label="Retype Password"
+                            placeholder="Enter Password Again"
+                            value={retypePassword}
+                            helperText={pass_error}
+                            variant="outlined"
+                            onChange={handleRetypePasswordChange}
+                        />
+                    </Grid>
+                    <Grid item xs = {12} align = "center">
+                        <FormControlLabel 
+                            control={
+                                <Checkbox
+                                checked={showPassword}
+                                onChange={(event) => setShowPassword(event.target.checked)}
+                                color="primary"
+                                />
+                            }
+                            label="Show Password"
+                        />
+                    </Grid>   
+                    <Grid item xs = {12} align = "center">
+                        <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={handleAccountButtonPressed}
+                        >
+                            Create Account
+                        </Button>
+                    </Grid>
+                    <Grid item xs = {12} align = "center">
+                        <GoogleLoginButton text = {"signup_with"}/>
+                    </Grid>
                 </Grid>
-                <Grid item xs = {12} align = "center">
-                    <TextField
-                        error={user_error}
-                        label="Username"
-                        placeholder="Enter a New Username"
-                        value={username}
-                        helperText={user_error}
-                        variant="outlined"
-                        onChange={handleUsernameChange}
-                    />
-                </Grid>
-                <Grid item xs = {12} align = "center">
-                    <TextField
-                        error={pass_error}
-                        type = {showPassword ? "test" : "password"}
-                        label="Password"
-                        placeholder="Enter a Password"
-                        value={password}
-                        helperText={pass_error}
-                        variant="outlined"
-                        onChange={handlePasswordChange}
-                    />
-                </Grid>             
-                <Grid item xs = {12} align = "center">
-                    <TextField
-                        error={pass_error}
-                        type = {showPassword ? "test" : "password"}
-                        label="Retype Password"
-                        placeholder="Enter Password Again"
-                        value={retypePassword}
-                        helperText={pass_error}
-                        variant="outlined"
-                        onChange={handleRetypePasswordChange}
-                    />
-                </Grid>
-                <Grid item xs = {12} align = "center">
-                    <FormControlLabel 
-                        control={
-                            <Checkbox
-                            checked={showPassword}
-                            onChange={(event) => setShowPassword(event.target.checked)}
-                            color="primary"
-                            />
-                        }
-                        label="Show Password"
-                    />
-                </Grid>   
-                <Grid item xs = {12} align = "center">
-                    <Button
-                    color="primary"
-                    variant="contained"
-                    onClick={handleAccountButtonPressed}
-                    >
-                        Create Account
-                    </Button>
-                </Grid>
-                <Grid item xs = {12} align = "center">
-                    <GoogleLoginButton text = {"signup_with"}/>
-                </Grid>
-            </Grid>
+            </form>
         </div>
     )
 
