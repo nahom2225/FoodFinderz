@@ -23,8 +23,23 @@ export default function Login(props) {
     const[user_error, setUserError] = useState('');
     const[pass_error, setPassError] = useState('');
     const[showPassword, setShowPassword] = useState(false);
+    const[csrftoken, setCsrftoken] = useState(0);
 
     useEffect(() => {
+        fetch(`${backendUrl}/api/getCSRFToken`, {
+            credentials: 'include',
+        }).then((response) => {
+            if (!response.ok){
+                console.log("OH OOHHH");
+            } else {
+                response.json().then((jsonResponse) => {
+                    console.log("CSRFToken: ", jsonResponse["token"]);
+                    setCsrftoken(jsonResponse["token"]);
+                });
+            }
+        }).catch((error) => {
+            console.error("Error fetching CSRF token:", error);
+        });
         const script = document.createElement('script');
         script.src = 'https://accounts.google.com/gsi/client';
         script.async = true;
@@ -49,18 +64,18 @@ export default function Login(props) {
         event.preventDefault();
         const requestOptions = {
             method: "POST",
-            headers: { "Content-Type": "application/json"},
+            headers: { 
+                "Content-Type": "application/json",
+                'X-CSRFToken': csrftoken,
+                "ngrok-skip-browser-warning": "6024",
+                },
+            credentials: 'include',
             body: JSON.stringify({
                 username : username,
                 password : password
             }),
         };
-        fetch(`${backendUrl}/api/login`, requestOptions, {
-            credentials: 'include',
-            headers: new Headers({
-              "ngrok-skip-browser-warning": "6024",
-            }),
-          })
+        fetch(`${backendUrl}/api/login`, requestOptions)
         .then((response) => {
             if (response.ok) {
                 response.json()

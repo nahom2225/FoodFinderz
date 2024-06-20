@@ -86,8 +86,10 @@ export default function CreateAccount(props) {
         console.log(csrftoken)
         const requestOptions = {
             method: "POST",
-            headers: { "Content-Type": "application/json",
-            'X-CSRFToken': csrftoken
+            headers: { 
+            "Content-Type": "application/json",
+            'X-CSRFToken': csrftoken,
+            "ngrok-skip-browser-warning": "6024",
             },
             credentials: 'include',
             body: JSON.stringify({
@@ -99,10 +101,6 @@ export default function CreateAccount(props) {
             setPassError('Passwords Do Not Match!');
         } else {
         fetch(`${backendUrl}/api/create-account`, requestOptions, {
-            credentials: 'include',  
-            headers: new Headers({
-              "ngrok-skip-browser-warning": "6024",
-            }),
           })
         .then((response) => {
             if (response.ok) {
