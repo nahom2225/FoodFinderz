@@ -17,7 +17,7 @@ export default function EditPost(props) {
 
     const navigate = useNavigate();
     const backendUrl = process.env.REACT_APP_BACKEND_URL;
-    const mapsApi = process.env.REACT_APP_BACKEND_URL;
+    const mapsApi = process.env.REACT_APP_MAPS_API;
 
     const { op, post_id } = useParams();
 

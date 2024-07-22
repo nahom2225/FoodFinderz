@@ -14,7 +14,7 @@ export default function FrontPage(props) {
     
   const navigate = useNavigate();
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
-  const mapsApi = process.env.REACT_APP_BACKEND_URL;
+  const mapsApi = process.env.REACT_APP_MAPS_API;
 
   const [username, setUsername] = useState('');
   const [account, setAccount] = useState({});
