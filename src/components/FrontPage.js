@@ -24,31 +24,49 @@ export default function FrontPage(props) {
   const [numberOfPosts, setNumberOfPosts] = useState(1);
   const [postPerPage, setPostPerPage] = useState(5);
   const [pageOffset, setPageOffset] = useState(0);
+  const[csrftoken, setCsrftoken] = useState(0);
 
   Geocode.setApiKey(mapsApi);
 
   useEffect(() => {
     // code to run on component mount
-    fetch(`${backendUrl}/api/get-account`, {
-      credentials: 'include',  
-      headers: new Headers({
-        "ngrok-skip-browser-warning": "6024",
-        "SameSite": "None"
-      }),
+      fetch(`${backendUrl}/api/getCSRFToken`, {
+        credentials: 'include',
     }).then((response) => {
-      if (!response.ok){
-        console.log("retrieve account error")
-        props.clearAccountIdCallback();
-        navigate("/");
-      } else {
-        response.json().then((data) => {
-          setAccount(data);
-          setUsername(data.username);
-          console.log(data)
-          console.log(data.username)
-        })
-      }
-    })
+        if (!response.ok){
+            console.log("OH OOHHH");
+        } else {
+            response.json().then((jsonResponse) => {
+                console.log("CSRFToken: ", jsonResponse["token"]);
+                setCsrftoken(jsonResponse["token"]);
+            });
+        }
+    }).then((response) => {
+      fetch(`${backendUrl}/api/get-account`, {
+        credentials: 'include',  
+        headers: new Headers({
+          "ngrok-skip-browser-warning": "6024",
+          'X-CSRFToken': csrftoken,
+          "SameSite": "None"
+        }),
+      }).then((response) => {
+        if (!response.ok){
+          console.log("retrieve account error")
+          props.clearAccountIdCallback();
+          navigate("/");
+        } else {
+          response.json().then((data) => {
+            setAccount(data);
+            setUsername(data.username);
+            console.log(data)
+            console.log(data.username)
+          })
+        }
+      })
+    }).catch((error) => {
+        console.error("Error fetching CSRF token:", error);
+    });
+    
     // cleanup function to run on component unmount
     return () => {
     };
