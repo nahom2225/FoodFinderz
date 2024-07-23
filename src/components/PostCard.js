@@ -54,6 +54,7 @@ export default function PostCard(props) {
   const[downvote, setDownvote] = useState(false)
 
   useEffect(() => {
+    console.log(props.username)
     // code to run on component mount
     const requestOptions = {
         method: "GET",
