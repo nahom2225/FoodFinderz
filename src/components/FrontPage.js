@@ -306,7 +306,7 @@ export default function FrontPage(props) {
         <div id="map"></div>
       </Grid>
       <Grid item xs={3} className="posts-container">          
-        {posts.map(post => (<PostCard key={post.id} owner = {post.account_poster == username ? true : false} {...post} />))}
+        {posts.map(post => (<PostCard key={post.id} username = {account.username} {...post} />))}
       </Grid>
     </Grid>
   );

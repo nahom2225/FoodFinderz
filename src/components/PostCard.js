@@ -64,6 +64,9 @@ export default function PostCard(props) {
       headers: new Headers({
         "ngrok-skip-browser-warning": "6024",
       }),
+      body: JSON.stringify({
+        username : props.username
+    }),
     }).
     then((response) => {
         if (!response.ok){
