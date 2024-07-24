@@ -125,7 +125,7 @@ export default function PostCard(props) {
     // cleanup function to run on component unmount
     return () => {
     };
-  }, [votes]);
+  }, [username, votes]);
 
 
   function handleClick() {
