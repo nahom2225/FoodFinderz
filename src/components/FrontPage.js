@@ -75,7 +75,7 @@ export default function FrontPage(props) {
     };
 
     fetchCSRFToken().then(fetchAccountData);
-  }, [csrftoken, navigate, props]);
+  }, [navigate, props]);
 
   useEffect(() => {
     const fetchData = async () => {
