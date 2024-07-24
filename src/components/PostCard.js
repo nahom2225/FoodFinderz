@@ -96,8 +96,15 @@ export default function PostCard(props) {
       }
     };
 
-    const fetchPostVote = async () => {
-      const requestOptions = {
+
+    
+    fetchCSRFToken().then(fetchAccountData);
+  }, [navigate, props]);
+
+  useEffect(() => {
+    console.log(props.username)
+    // code to run on component mount
+    const requestOptions = {
         method: "GET",
         headers: { "Content-Type": "application/json"},
     };
@@ -116,10 +123,10 @@ export default function PostCard(props) {
             setDownvote(data["downvote"]);
           })
         }})
+    // cleanup function to run on component unmount
+    return () => {
     };
-
-    fetchCSRFToken().then(fetchAccountData).then(fetchPostVote);
-  }, [navigate, props, votes]);
+  }, [username, votes]);
 
 
   function handleClick() {
