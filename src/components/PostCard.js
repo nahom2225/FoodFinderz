@@ -59,11 +59,8 @@ export default function PostCard(props) {
     const requestOptions = {
         method: "GET",
         headers: { "Content-Type": "application/json"},
-        body: JSON.stringify({
-          username : props.username
-      }),
     };
-    fetch(`${backendUrl}/api/get-post-vote/${props.post_id}`, requestOptions, {
+    fetch(`${backendUrl}/api/get-post-vote/${props.post_id}?username=${props.username}`, requestOptions, {
       credentials: 'include',  
       headers: new Headers({
         "ngrok-skip-browser-warning": "6024",
