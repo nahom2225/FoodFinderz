@@ -25,52 +25,57 @@ export default function FrontPage(props) {
   const [postPerPage, setPostPerPage] = useState(5);
   const [pageOffset, setPageOffset] = useState(0);
   const[csrftoken, setCsrftoken] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   Geocode.setApiKey(mapsApi);
 
-  useEffect(() => {
-    // code to run on component mount
-      fetch(`${backendUrl}/api/getCSRFToken`, {
-        credentials: 'include',
-    }).then((response) => {
-        if (!response.ok){
-            console.log("OH OOHHH");
-        } else {
-            response.json().then((jsonResponse) => {
-                console.log("CSRFToken: ", jsonResponse["token"]);
-                setCsrftoken(jsonResponse["token"]);
-            });
+    useEffect(() => {
+    const fetchCSRFToken = async () => {
+      try {
+        const response = await fetch(`${backendUrl}/api/getCSRFToken`, {
+          credentials: 'include',
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch CSRF token");
         }
-    }).then((response) => {
-      fetch(`${backendUrl}/api/get-account`, {
-        credentials: 'include',  
-        headers: new Headers({
-          "ngrok-skip-browser-warning": "6024",
-          'X-CSRFToken': csrftoken,
-          "SameSite": "None"
-        }),
-      }).then((response) => {
-        if (!response.ok){
-          console.log("retrieve account error")
+        const jsonResponse = await response.json();
+        console.log("CSRFToken: ", jsonResponse["token"]);
+        setCsrftoken(jsonResponse["token"]);
+      } catch (error) {
+        console.error("Error fetching CSRF token:", error);
+      }
+    };
+
+    const fetchAccountData = async () => {
+      try {
+        const response = await fetch(`${backendUrl}/api/get-account`, {
+          credentials: 'include',
+          headers: {
+            "ngrok-skip-browser-warning": "6024",
+            'X-CSRFToken': csrftoken,
+            "SameSite": "None"
+          },
+        });
+        if (!response.ok) {
+          console.log("retrieve account error");
           props.clearAccountIdCallback();
           navigate("/");
-        } else {
-          response.json().then((data) => {
-            setAccount(data);
-            setUsername(data.username);
-            console.log(data)
-            console.log(data.username)
-          })
+          return;
         }
-      })
-    }).catch((error) => {
-        console.error("Error fetching CSRF token:", error);
-    });
-    
-    // cleanup function to run on component unmount
-    return () => {
+        const data = await response.json();
+        setAccount(data);
+        setUsername(data.username);
+        console.log(data);
+        console.log(data.username);
+      } catch (error) {
+        console.error("Error fetching account data:", error);
+      } finally {
+        setLoading(false); // Set loading to false when data is fetched
+      }
     };
-  }, [navigate, props]);
+
+    fetchCSRFToken().then(fetchAccountData);
+  }, [csrftoken, navigate, props]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -306,7 +311,7 @@ export default function FrontPage(props) {
         <div id="map"></div>
       </Grid>
       <Grid item xs={3} className="posts-container">          
-        {posts.map(post => (<PostCard key={post.id} username = {"test"} {...post} />))}
+        {posts.map(post => (<PostCard key={post.id} username = {username} {...post} />))}
       </Grid>
     </Grid>
   );
