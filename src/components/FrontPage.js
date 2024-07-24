@@ -118,7 +118,7 @@ export default function FrontPage(props) {
     } else if (nextLink.classList.contains("disabled")) {
       nextLink.classList.remove('disabled');
     }
-  }, [page, numberOfPosts, postPerPage]);
+  }, [loading, page, numberOfPosts, postPerPage]);
 
   useEffect(() => {
     const pageFirst = document.getElementById("first");
@@ -144,7 +144,7 @@ export default function FrontPage(props) {
       default:
         break;
     }
-  }, [page, numberOfPosts, postPerPage]);
+  }, [loading, page, numberOfPosts, postPerPage]);
 
   useEffect(() => {
     const pageSecond = document.getElementById("second");
@@ -270,6 +270,10 @@ export default function FrontPage(props) {
     }
     pageClicked.classList.add("active");
   };
+
+  if (loading) {
+    return <div>Loading...</div> 
+  }
 
   return (
     <Grid container justifyContent="space-around" style = {{height: "100vh"}}>
