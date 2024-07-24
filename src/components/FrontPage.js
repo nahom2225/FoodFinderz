@@ -70,7 +70,7 @@ export default function FrontPage(props) {
       } catch (error) {
         console.error("Error fetching account data:", error);
       } finally {
-        setLoading(false); // Set loading to false when data is fetched
+        setLoading(false); 
       }
     };
 
@@ -312,7 +312,7 @@ export default function FrontPage(props) {
         <div id="map"></div>
       </Grid>
       <Grid item xs={3} className="posts-container">          
-        {posts.map(post => (<PostCard key={post.id} username = {account.username} {...post} />))}
+        {posts.map(post => (<PostCard key={post.id} {...post} />))}
       </Grid>
     </Grid>
   );

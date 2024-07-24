@@ -52,15 +52,55 @@ export default function PostCard(props) {
   const[votes, setVotes] = useState(props.votes)
   const[upvote, setUpvote] = useState(false)
   const[downvote, setDownvote] = useState(false)
+  const [username, setUsername] = useState('');
 
   useEffect(() => {
-    console.log(props.username)
-    // code to run on component mount
-    const requestOptions = {
+    const fetchCSRFToken = async () => {
+      try {
+        const response = await fetch(`${backendUrl}/api/getCSRFToken`, {
+          credentials: 'include',
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch CSRF token");
+        }
+        const jsonResponse = await response.json();
+        console.log("CSRFToken: ", jsonResponse["token"]);
+        setCsrftoken(jsonResponse["token"]);
+      } catch (error) {
+        console.error("Error fetching CSRF token:", error);
+      }
+    };
+
+    const fetchAccountData = async () => {
+      try {
+        const response = await fetch(`${backendUrl}/api/get-account`, {
+          credentials: 'include',
+          headers: {
+            "ngrok-skip-browser-warning": "6024",
+            'X-CSRFToken': csrftoken,
+            "SameSite": "None"
+          },
+        });
+        if (!response.ok) {
+          console.log("retrieve account error");
+          props.clearAccountIdCallback();
+          navigate("/");
+          return;
+        }
+        const data = await response.json();
+        setUsername(data.username);
+      } catch (error) {
+        console.error("Error fetching account data:", error);
+      } finally {
+      }
+    };
+
+    const fetchPostVote = async () => {
+      const requestOptions = {
         method: "GET",
         headers: { "Content-Type": "application/json"},
     };
-    fetch(`${backendUrl}/api/get-post-vote/${props.post_id}/${props.username}`, requestOptions, {
+    fetch(`${backendUrl}/api/get-post-vote/${props.post_id}/${username}`, requestOptions, {
       credentials: 'include',  
       headers: new Headers({
         "ngrok-skip-browser-warning": "6024",
@@ -75,10 +115,10 @@ export default function PostCard(props) {
             setDownvote(data["downvote"]);
           })
         }})
-    // cleanup function to run on component unmount
-    return () => {
     };
-  }, [votes]);
+
+    fetchCSRFToken().then(fetchAccountData).then(fetchPostVote);
+  }, [navigate, props, votes]);
 
 
   function handleClick() {
