@@ -271,9 +271,6 @@ export default function FrontPage(props) {
     pageClicked.classList.add("active");
   };
 
-  if (loading) {
-    return <div>Loading...</div> 
-  }
 
   return (
     <Grid container justifyContent="space-around" style = {{height: "100vh"}}>
@@ -315,7 +312,7 @@ export default function FrontPage(props) {
         <div id="map"></div>
       </Grid>
       <Grid item xs={3} className="posts-container">          
-        {posts.map(post => (<PostCard key={post.id} username = {username} {...post} />))}
+        {posts.map(post => (<PostCard key={post.id} username = {account.username} {...post} />))}
       </Grid>
     </Grid>
   );
