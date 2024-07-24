@@ -52,6 +52,7 @@ export default function PostCard(props) {
   const[votes, setVotes] = useState(props.votes)
   const[upvote, setUpvote] = useState(false)
   const[downvote, setDownvote] = useState(false)
+  const[csrftoken, setCsrftoken] = useState(0);
   const [username, setUsername] = useState('');
 
   useEffect(() => {
