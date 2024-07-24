@@ -135,16 +135,17 @@ export default function PostCard(props) {
   function handleUpVote() {
     const requestOptions = {
         method: "POST",
-        headers: { "Content-Type": "application/json"},
+        headers: { 
+        "Content-Type": "application/json",
+        'X-CSRFToken': csrftoken,
+        "ngrok-skip-browser-warning": "6024",
+        },
         body: JSON.stringify({
             post_id : props.post_id               
         }),
     };
     fetch(`${backendUrl}/api/post-vote/${1}`, requestOptions, {
       credentials: 'include',  
-      headers: new Headers({
-        "ngrok-skip-browser-warning": "6024",
-      }),
     }).
     then((response) => {
         if (!response.ok){
@@ -161,7 +162,11 @@ export default function PostCard(props) {
   function handleDownVote() {
     const requestOptions = {
         method: "POST",
-        headers: { "Content-Type": "application/json"},
+        headers: { 
+          "Content-Type": "application/json",
+          'X-CSRFToken': csrftoken,
+          "ngrok-skip-browser-warning": "6024",
+          },
         body: JSON.stringify({
             post_id : props.post_id               
         }),
