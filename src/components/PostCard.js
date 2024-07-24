@@ -84,7 +84,6 @@ export default function PostCard(props) {
         });
         if (!response.ok) {
           console.log("retrieve account error");
-          props.clearAccountIdCallback();
           navigate("/");
           return;
         }
@@ -99,7 +98,7 @@ export default function PostCard(props) {
 
     
     fetchCSRFToken().then(fetchAccountData);
-  }, [navigate, props]);
+  }, []);
 
   useEffect(() => {
     console.log(props.username)
@@ -126,7 +125,7 @@ export default function PostCard(props) {
     // cleanup function to run on component unmount
     return () => {
     };
-  }, [username, votes]);
+  }, [votes]);
 
 
   function handleClick() {

@@ -24,8 +24,7 @@ export default function FrontPage(props) {
   const [numberOfPosts, setNumberOfPosts] = useState(1);
   const [postPerPage, setPostPerPage] = useState(5);
   const [pageOffset, setPageOffset] = useState(0);
-  const[csrftoken, setCsrftoken] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [csrftoken, setCsrftoken] = useState(0);
 
   Geocode.setApiKey(mapsApi);
 
@@ -69,13 +68,11 @@ export default function FrontPage(props) {
         console.log(data.username);
       } catch (error) {
         console.error("Error fetching account data:", error);
-      } finally {
-        setLoading(false); 
       }
     };
 
     fetchCSRFToken().then(fetchAccountData);
-  }, [navigate, props]);
+  }, [props]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -118,7 +115,7 @@ export default function FrontPage(props) {
     } else if (nextLink.classList.contains("disabled")) {
       nextLink.classList.remove('disabled');
     }
-  }, [loading, page, numberOfPosts, postPerPage]);
+  }, [page, numberOfPosts, postPerPage]);
 
   useEffect(() => {
     const pageFirst = document.getElementById("first");
@@ -144,7 +141,7 @@ export default function FrontPage(props) {
       default:
         break;
     }
-  }, [loading, page, numberOfPosts, postPerPage]);
+  }, [page, numberOfPosts, postPerPage]);
 
   useEffect(() => {
     const pageSecond = document.getElementById("second");
