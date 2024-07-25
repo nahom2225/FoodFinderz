@@ -99,10 +99,11 @@ export default function PostCard(props) {
     };
 
     fetchAccountData(csrftoken);
-  }, []);
+  }, [props]);
 
   useEffect(() => {
-    console.log(props.username)
+    console.log(csrftoken)
+    console.log(username)
     // code to run on component mount
     const requestOptions = {
         method: "GET",
