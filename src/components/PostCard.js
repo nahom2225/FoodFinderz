@@ -92,9 +92,7 @@ export default function PostCard(props) {
         }
     
         const data = await response.json();
-        setAccount(data);
         setUsername(data.username);
-        console.log(data);
         console.log(data.username);
         return data.username;
     
