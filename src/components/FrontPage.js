@@ -33,19 +33,21 @@ export default function FrontPage(props) {
       try {
         const response = await fetch(`${backendUrl}/api/getCSRFToken`, {
           credentials: 'include',
-        });
-        if (!response.ok) {
+        }).then((response) => {
+          if (!response.ok) {
           throw new Error("Failed to fetch CSRF token");
-        }
-        const jsonResponse = await response.json();
-        console.log("CSRFToken: ", jsonResponse["token"]);
-        setCsrftoken(jsonResponse["token"]);
+          }
+          const jsonResponse = response.json();
+          console.log("CSRFToken: ", jsonResponse["token"]);
+          setCsrftoken(jsonResponse["token"]);
+          return csrftoken;
+        });
       } catch (error) {
         console.error("Error fetching CSRF token:", error);
       }
     };
 
-    const fetchAccountData = async () => {
+    const fetchAccountData = async (csrftoken) => {
       try {
         const response = await fetch(`${backendUrl}/api/get-account`, {
           credentials: 'include',
@@ -54,24 +56,24 @@ export default function FrontPage(props) {
             'X-CSRFToken': csrftoken,
             "SameSite": "None"
           },
-        });
-        if (!response.ok) {
+        }).then(response => {
+          if (!response.ok) {
           console.log("retrieve account error");
           props.clearAccountIdCallback();
           navigate("/");
           return;
-        }
-        const data = await response.json();
-        setAccount(data);
-        setUsername(data.username);
-        console.log(data);
-        console.log(data.username);
+          }
+          const data = response.json();
+          setAccount(data);
+          setUsername(data.username);
+          console.log(data);
+          console.log(data.username);});
       } catch (error) {
         console.error("Error fetching account data:", error);
       }
     };
 
-    fetchCSRFToken().then(fetchAccountData);
+    fetchCSRFToken((csrftoken) => fetchAccountData(csrftoken));
   }, [props]);
 
   useEffect(() => {

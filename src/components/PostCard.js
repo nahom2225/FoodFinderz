@@ -105,13 +105,13 @@ export default function PostCard(props) {
     // code to run on component mount
     const requestOptions = {
         method: "GET",
-        headers: { "Content-Type": "application/json"},
+        headers: { 
+        "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "6024",
+        },
     };
     fetch(`${backendUrl}/api/get-post-vote/${props.post_id}/${username}`, requestOptions, {
       credentials: 'include',  
-      headers: new Headers({
-        "ngrok-skip-browser-warning": "6024",
-      }),
     }).
     then((response) => {
         if (!response.ok){
@@ -173,9 +173,6 @@ export default function PostCard(props) {
     };
     fetch(`${backendUrl}/api/post-vote/${0}`, requestOptions, {
       credentials: 'include',  
-      headers: new Headers({
-        "ngrok-skip-browser-warning": "6024",
-      }),
     }).
     then((response) => {
         if (!response.ok){
