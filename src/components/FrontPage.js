@@ -33,11 +33,10 @@ export default function FrontPage(props) {
       try {
         const response = await fetch(`${backendUrl}/api/getCSRFToken`, {
           credentials: 'include',
-        }).then((response) => {
+        }).then((response) => response.json()).then((jsonResponse) => {
           if (!response.ok) {
           throw new Error("Failed to fetch CSRF token");
           }
-          const jsonResponse = response.json();
           console.log("CSRFToken: ", jsonResponse["token"]);
           setCsrftoken(jsonResponse["token"]);
           return csrftoken;
@@ -56,14 +55,13 @@ export default function FrontPage(props) {
             'X-CSRFToken': csrftoken,
             "SameSite": "None"
           },
-        }).then(response => {
+        }).then((response) => response.json).then((data) => {
           if (!response.ok) {
           console.log("retrieve account error");
           props.clearAccountIdCallback();
           navigate("/");
           return;
           }
-          const data = response.json();
           setAccount(data);
           setUsername(data.username);
           console.log(data);
