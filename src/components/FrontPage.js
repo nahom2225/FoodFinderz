@@ -24,11 +24,11 @@ export default function FrontPage(props) {
   const [numberOfPosts, setNumberOfPosts] = useState(1);
   const [postPerPage, setPostPerPage] = useState(5);
   const [pageOffset, setPageOffset] = useState(0);
-  const [csrftoken, setCsrftoken] = useState(0);
+  const [csrftoken, setCsrftoken] = useState(window.CSRF_TOKEN);
 
   Geocode.setApiKey(mapsApi);
 
-    useEffect(() => {
+  useEffect(() => {
     const fetchCSRFToken = async () => {
       try {
         const response = await fetch(`${backendUrl}/api/getCSRFToken`, {
@@ -71,8 +71,9 @@ export default function FrontPage(props) {
       }
     };
 
-    fetchCSRFToken((csrftoken) => fetchAccountData(csrftoken));
-  }, [props]);
+    fetchAccountData(csrftoken);
+  }, []);
+
 
   useEffect(() => {
     const fetchData = async () => {

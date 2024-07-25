@@ -66,7 +66,7 @@ export default function Login(props) {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",
-                'X-CSRFToken': csrftoken,
+                'X-CSRFToken': window.CSRF_TOKEN,
                 "ngrok-skip-browser-warning": "6024",
                 },
             credentials: 'include',

@@ -99,7 +99,7 @@ export default function PostCard(props) {
     };
 
     fetchAccountData(csrftoken);
-  }, [props]);
+  }, []);
 
   useEffect(() => {
     console.log(props.username)

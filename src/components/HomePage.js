@@ -21,24 +21,25 @@ export default function Home(props) {
     const[accountId, setAccountId] = useState(null);
     const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-      useEffect(() => {
+    useEffect(() => {
         const fetchCSRFToken = async () => {
           try {
             const response = await fetch(`${backendUrl}/api/getCSRFToken`, {
               credentials: 'include',
-            });
-            if (!response.ok) {
+            }).then((response) => response.json()).then((jsonResponse) => {
+              if (!response.ok) {
               throw new Error("Failed to fetch CSRF token");
-            }
-            const jsonResponse = await response.json();
-            console.log("CSRFToken: ", jsonResponse["token"]);
-            setCsrftoken(jsonResponse["token"]);
+              }
+              console.log("CSRFToken: ", jsonResponse["token"]);
+              setCsrftoken(jsonResponse["token"]);
+              return csrftoken;
+            });
           } catch (error) {
             console.error("Error fetching CSRF token:", error);
           }
         };
     
-        const fetchAccountData = async () => {
+        const fetchAccountData = async (csrftoken) => {
           try {
             const response = await fetch(`${backendUrl}/api/get-account`, {
               credentials: 'include',
@@ -47,23 +48,23 @@ export default function Home(props) {
                 'X-CSRFToken': csrftoken,
                 "SameSite": "None"
               },
-            });
-            if (!response.ok) {
+            }).then((response) => response.json).then((data) => {
+              if (!response.ok) {
               console.log("retrieve account error");
               props.clearAccountIdCallback();
               navigate("/");
               return;
-            }
-            const data = await response.json();
-            console.log("HOMEPAGE");
-            setAccountId(data.account_id);
-            console.log(data.accountId);  
+              }
+              console.log("HOMEPAGE");
+              setAccountId(data.account_id);
+              console.log(data.accountId); 
+            });
           } catch (error) {
             console.error("Error fetching account data:", error);
           }
         };
     
-        fetchCSRFToken().then(fetchAccountData);
+        fetchAccountData(window.CSRF_TOKEN);
       }, []);
 
 
