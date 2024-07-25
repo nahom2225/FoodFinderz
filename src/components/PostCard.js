@@ -52,7 +52,7 @@ export default function PostCard(props) {
   const[votes, setVotes] = useState(props.votes)
   const[upvote, setUpvote] = useState(false)
   const[downvote, setDownvote] = useState(false)
-  const[csrftoken, setCsrftoken] = useState(0);
+  const [csrftoken, setCsrftoken] = useState(window.CSRF_TOKEN);
   const [username, setUsername] = useState('');
 
   useEffect(() => {
@@ -60,19 +60,20 @@ export default function PostCard(props) {
       try {
         const response = await fetch(`${backendUrl}/api/getCSRFToken`, {
           credentials: 'include',
-        });
-        if (!response.ok) {
+        }).then((response) => response.json()).then((jsonResponse) => {
+          if (!response.ok) {
           throw new Error("Failed to fetch CSRF token");
-        }
-        const jsonResponse = await response.json();
-        console.log("CSRFToken: ", jsonResponse["token"]);
-        setCsrftoken(jsonResponse["token"]);
+          }
+          console.log("CSRFToken: ", jsonResponse["token"]);
+          setCsrftoken(jsonResponse["token"]);
+          return csrftoken;
+        });
       } catch (error) {
         console.error("Error fetching CSRF token:", error);
       }
     };
 
-    const fetchAccountData = async () => {
+    const fetchAccountData = async (csrftoken) => {
       try {
         const response = await fetch(`${backendUrl}/api/get-account`, {
           credentials: 'include',
@@ -81,24 +82,24 @@ export default function PostCard(props) {
             'X-CSRFToken': csrftoken,
             "SameSite": "None"
           },
-        });
-        if (!response.ok) {
+        }).then((response) => response.json).then((data) => {
+          if (!response.ok) {
           console.log("retrieve account error");
+          props.clearAccountIdCallback();
           navigate("/");
           return;
-        }
-        const data = await response.json();
-        setUsername(data.username);
+          }
+          setAccount(data);
+          setUsername(data.username);
+          console.log(data);
+          console.log(data.username);});
       } catch (error) {
         console.error("Error fetching account data:", error);
-      } finally {
       }
     };
 
-
-    
-    fetchCSRFToken().then(fetchAccountData);
-  }, []);
+    fetchAccountData(csrftoken);
+  }, [props]);
 
   useEffect(() => {
     console.log(props.username)
