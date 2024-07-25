@@ -46,7 +46,7 @@ export default function FrontPage(props) {
       }
     };
 
-    const fetchAccountData = async (csrftoken) => {
+    const fetchAccountData = async () => {
       try {
         const response = await fetch(`${backendUrl}/api/get-account`, {
           credentials: 'include',
@@ -55,23 +55,28 @@ export default function FrontPage(props) {
             'X-CSRFToken': csrftoken,
             "SameSite": "None"
           },
-        }).then((response) => response.json).then((data) => {
-          if (!response.ok) {
+        });
+    
+        if (!response.ok) {
           console.log("retrieve account error");
           props.clearAccountIdCallback();
           navigate("/");
           return;
-          }
-          setAccount(data);
-          setUsername(data.username);
-          console.log(data);
-          console.log(data.username);});
+        }
+    
+        const data = await response.json();
+        setAccount(data);
+        setUsername(data.username);
+        console.log(data);
+        console.log(data.username);
+        return data.username;
+    
       } catch (error) {
         console.error("Error fetching account data:", error);
       }
     };
 
-    fetchAccountData(csrftoken);
+    fetchAccountData();
   }, []);
 
 

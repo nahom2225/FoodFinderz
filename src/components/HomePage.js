@@ -19,6 +19,7 @@ import EditPost from "./EditPost";
 export default function Home(props) {
 
     const[accountId, setAccountId] = useState(null);
+    const [csrftoken, setCsrftoken] = useState(window.CSRF_TOKEN);
     const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     useEffect(() => {
@@ -39,30 +40,34 @@ export default function Home(props) {
           }
         };
     
-        const fetchAccountData = async (csrftoken) => {
-          try {
-            const response = await fetch(`${backendUrl}/api/get-account`, {
-              credentials: 'include',
-              headers: {
-                "ngrok-skip-browser-warning": "6024",
-                'X-CSRFToken': csrftoken,
-                "SameSite": "None"
-              },
-            }).then((response) => response.json).then((data) => {
+        const fetchAccountData = async () => {
+            try {
+              const response = await fetch(`${backendUrl}/api/get-account`, {
+                credentials: 'include',
+                headers: {
+                  "ngrok-skip-browser-warning": "6024",
+                  'X-CSRFToken': csrftoken,
+                  "SameSite": "None"
+                },
+              });
+          
               if (!response.ok) {
-              console.log("retrieve account error");
-              props.clearAccountIdCallback();
-              navigate("/");
-              return;
+                console.log("retrieve account error");
+                props.clearAccountIdCallback();
+                navigate("/");
+                return;
               }
+          
+              const data = await response.json();
               console.log("HOMEPAGE");
               setAccountId(data.account_id);
               console.log(data.accountId); 
-            });
-          } catch (error) {
-            console.error("Error fetching account data:", error);
-          }
-        };
+              return data.username;
+          
+            } catch (error) {
+              console.error("Error fetching account data:", error);
+            }
+          };
     
         fetchAccountData(window.CSRF_TOKEN);
       }, []);

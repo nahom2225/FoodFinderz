@@ -73,7 +73,7 @@ export default function PostCard(props) {
       }
     };
 
-    const fetchAccountData = async (csrftoken) => {
+    const fetchAccountData = async () => {
       try {
         const response = await fetch(`${backendUrl}/api/get-account`, {
           credentials: 'include',
@@ -82,23 +82,64 @@ export default function PostCard(props) {
             'X-CSRFToken': csrftoken,
             "SameSite": "None"
           },
-        }).then((response) => response.json).then((data) => {
-          if (!response.ok) {
+        });
+    
+        if (!response.ok) {
           console.log("retrieve account error");
           props.clearAccountIdCallback();
           navigate("/");
           return;
-          }
-          setAccount(data);
-          setUsername(data.username);
-          console.log(data);
-          console.log(data.username);});
+        }
+    
+        const data = await response.json();
+        setAccount(data);
+        setUsername(data.username);
+        console.log(data);
+        console.log(data.username);
+        return data.username;
+    
       } catch (error) {
         console.error("Error fetching account data:", error);
       }
     };
+    
+    const fetchPostVotes = async (username) => {
+      try {
+        const requestOptions = {
+          method: "GET",
+          headers: { 
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "6024",
+          },
+          credentials: 'include',
+        };
+    
+        const response = await fetch(`${backendUrl}/api/get-post-vote/${props.post_id}/${username}`, requestOptions);
+    
+        if (!response.ok) {
+          console.log("OH OOHHH");
+          return;
+        }
+    
+        const data = await response.json();
+        setUpvote(data["upvote"]);
+        setDownvote(data["downvote"]);
+    
+      } catch (error) {
+        console.error("Error fetching post votes data:", error);
+      }
+    };
 
-    fetchAccountData(csrftoken);
+    fetchAccountData().then(username => {
+        if (username) {
+          fetchPostVotes(username);
+        } else{
+          console.log("FAILED TO RETRIEVE USERNAME!")
+        }
+      });
+      // cleanup function to run on component unmount
+      return () => {
+      };
   }, [props]);
 
   useEffect(() => {
