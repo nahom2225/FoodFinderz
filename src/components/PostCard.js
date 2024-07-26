@@ -205,6 +205,7 @@ export default function PostCard(props) {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
+          'X-CSRFToken': csrftoken,
           "ngrok-skip-browser-warning": "6024",
           },
         body: JSON.stringify({
