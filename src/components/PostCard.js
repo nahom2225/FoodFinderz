@@ -180,6 +180,7 @@ export default function PostCard(props) {
         "Content-Type": "application/json",
         'X-CSRFToken': csrftoken,
         "ngrok-skip-browser-warning": "6024",
+        "SameSite": "None",
         },
         body: JSON.stringify({
             post_id : props.post_id               
