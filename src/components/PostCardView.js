@@ -25,7 +25,7 @@ export default function PostCardView(props) {
 
     const { post_id } = useParams();
     const [post, setPost] = useState({});
-    const[account, setAccount] = useState({});
+    const [account, setAccount] = useState({});
     const [showDeleteButton, setShowDeleteButton] = useState(false);
 
     const navigate = useNavigate();
@@ -61,22 +61,52 @@ export default function PostCardView(props) {
                     console.log("404")
             }
         })
-        fetch(`${backendUrl}/api/get-account`, {
-          headers: new Headers({
-            "ngrok-skip-browser-warning": "6024",
-          }),
-        }).then((response) => {
-            if (!response.ok){
-              console.log("OH OOHHH")
+
+        const fetchCSRFToken = async () => {
+          try {
+            const response = await fetch(`${backendUrl}/api/getCSRFToken`, {
+              credentials: 'include',
+            }).then((response) => response.json()).then((jsonResponse) => {
+              if (!response.ok) {
+              throw new Error("Failed to fetch CSRF token");
+              }
+              console.log("CSRFToken: ", jsonResponse["token"]);
+              setCsrftoken(jsonResponse["token"]);
+              return csrftoken;
+            });
+          } catch (error) {
+            console.error("Error fetching CSRF token:", error);
+          }
+        };
+
+        const fetchAccountData = async () => {
+          try {
+            const response = await fetch(`${backendUrl}/api/get-account`, {
+              credentials: 'include',
+              headers: {
+                "ngrok-skip-browser-warning": "6024",
+                'X-CSRFToken': csrftoken,
+                "SameSite": "None"
+              },
+            });
+        
+            if (!response.ok) {
+              console.log("retrieve account error");
               props.clearAccountIdCallback();
               navigate("/");
-            } else {
-              response.json().then((data) => {
-                setAccount(data);
-                //console.log(data);
-              })
+              return;
             }
-          })
+        
+            const data = await response.json();
+            setAccount(data);
+            return data.username;
+        
+          } catch (error) {
+            console.error("Error fetching account data:", error);
+          }
+        };
+    
+        fetchAccountData();
 
         return () => {
         };
