@@ -27,6 +27,7 @@ export default function PostCardView(props) {
     const [post, setPost] = useState({});
     const [account, setAccount] = useState({});
     const [showDeleteButton, setShowDeleteButton] = useState(false);
+    const [csrftoken, setCsrftoken] = useState(window.CSRF_TOKEN);
 
     const navigate = useNavigate();
 
@@ -123,6 +124,7 @@ export default function PostCardView(props) {
           }
 
           setShowDeleteButton(post.account_poster === account.username);
+          console.log(showDeleteButton)
       }, [post, account]);
 
 
