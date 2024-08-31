@@ -4,7 +4,7 @@ from .views import index
 urlpatterns = [
     path('', index, name = 'index'),
     path('create-account', index),
-    path('frontpage', index),
+    path('frontpage', index, name = 'home'),
     path('login', index),
     path('create-post', index),
     path('frontpage/<str:post_id>', index),
