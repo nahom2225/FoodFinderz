@@ -139,9 +139,11 @@ export default function PostCardView(props) {
         };
         fetch(`${backendUrl}/api/delete-post`, requestOptions, {
           credentials: 'include',  
-          headers: new Headers({
+          headers: {
             "ngrok-skip-browser-warning": "6024",
-          }),
+            'X-CSRFToken': csrftoken,
+            "SameSite": "None"
+          },
         }).
         then((response) => {
             if (!response.ok){

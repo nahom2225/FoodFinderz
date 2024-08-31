@@ -36,9 +36,11 @@ export default function EditPost(props) {
     useEffect(() => {
       fetch(`${backendUrl}/api/get-account`, {
         credentials: 'include',  
-        headers: new Headers({
-          "ngrok-skip-browser-warning": "6024",
-        }),
+        headers: {
+            "ngrok-skip-browser-warning": "6024",
+            'X-CSRFToken': csrftoken,
+            "SameSite": "None"
+          },
       }).then((response) => {
         if (!response.ok){
           console.log("OH OOHHH")
@@ -72,7 +74,12 @@ export default function EditPost(props) {
         console.log('food_left:', document.getElementById("food_left").value );
         const requestOptions = {
             method: "POST",
-            headers: { "Content-Type": "application/json"},
+            headers: { 
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "6024",
+            'X-CSRFToken': csrftoken,
+            "SameSite": "None"
+            },
             body: JSON.stringify({
                 title : title, 
                 food : food,
