@@ -32,6 +32,7 @@ export default function EditPost(props) {
     const [description, setDescription] = useState(post.description || "");
     const [error, setError] = useState("");
     const [locationOptions, setLocationOptions] = useState([]);
+    const [csrftoken, setCsrftoken] = useState(window.CSRF_TOKEN);
   
     useEffect(() => {
       fetch(`${backendUrl}/api/get-account`, {
