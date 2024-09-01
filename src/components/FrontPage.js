@@ -76,7 +76,9 @@ export default function FrontPage(props) {
         console.error("Error fetching account data:", error);
       }
     };
-    console.log(window.csrftoken)
+    console.log(Cookies.get('csrftoken'))
+    console.log(Cookies.load('csrftoken'))
+    console.log(window.CSRF_TOKEN)
     console.log("BEFORE")
     console.log(csrftoken)
     fetchCSRFToken()
