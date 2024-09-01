@@ -76,8 +76,13 @@ export default function FrontPage(props) {
         console.error("Error fetching account data:", error);
       }
     };
-
-    fetchAccountData();
+    console.log(window.csrftoken)
+    console.log("BEFORE")
+    console.log(csrftoken)
+    fetchCSRFToken()
+    console.log("AFTER")
+    console.log(csrftoken)
+    fetchCSRFToken.then(fetchAccountData());
   }, []);
 
 
