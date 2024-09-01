@@ -24,7 +24,7 @@ export default function FrontPage(props) {
   const [numberOfPosts, setNumberOfPosts] = useState(1);
   const [postPerPage, setPostPerPage] = useState(5);
   const [pageOffset, setPageOffset] = useState(0);
-  const [csrftoken, setCsrftoken] = useState(window.CSRF_TOKEN);
+  const [csrftoken, setCsrftoken] = useState(Cookies.get('csrftoken'));
 
   Geocode.setApiKey(mapsApi);
 
