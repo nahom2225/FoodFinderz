@@ -80,10 +80,7 @@ export default function FrontPage(props) {
     console.log(window.CSRF_TOKEN)
     console.log("BEFORE")
     console.log(csrftoken)
-    fetchCSRFToken()
-    console.log("AFTER")
-    console.log(csrftoken)
-    fetchCSRFToken().then(fetchAccountData());
+    fetchAccountData()
   }, []);
 
 
