@@ -25,7 +25,7 @@ export default function FrontPage(props) {
   const [numberOfPosts, setNumberOfPosts] = useState(1);
   const [postPerPage, setPostPerPage] = useState(5);
   const [pageOffset, setPageOffset] = useState(0);
-  const [csrftoken, setCsrftoken] = useState(Cookies.get('csrftoken'));
+  const [csrftoken, setCsrftoken] = useState(window.CSRF_TOKEN);
 
   Geocode.setApiKey(mapsApi);
 
@@ -77,7 +77,6 @@ export default function FrontPage(props) {
       }
     };
     console.log(Cookies.get('csrftoken'))
-    console.log(Cookies.load('csrftoken'))
     console.log(window.CSRF_TOKEN)
     console.log("BEFORE")
     console.log(csrftoken)
