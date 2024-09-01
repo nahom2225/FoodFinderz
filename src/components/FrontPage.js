@@ -9,6 +9,7 @@ import PostCard from "./PostCard";
 import Geocode from "react-geocode";
 import { Loader } from "@googlemaps/js-api-loader"
 import { DisabledByDefaultRounded } from "@mui/icons-material";
+import Cookies from "js-cookie";
 
 export default function FrontPage(props) {
     

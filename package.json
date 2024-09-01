@@ -1,21 +1,21 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "engines": {
     "node": "16.17.0",
     "npm": "9.2.0"
   },
   "scripts": {
     "dev": "webpack --mode development --watch",
-    "start": "react-scripts --max-http-header-size=2048 start",
+    "start": "react-scripts --max-http-header-size=10000 start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3000/",
+  "proxy": "http://localhost:8000/",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -46,6 +46,7 @@
     "bootstrap": "^5.3.2",
     "dotenv": "^16.4.5",
     "google-auth-library": "^8.9.0",
+    "js-cookie": "^3.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-geocode": "^0.2.3",
@@ -73,6 +74,6 @@
     ]
   },
   "compilerOptions": {
-    "baseUrl": "C:\\Users\\nahom\\Desktop\\FF\\FoodFinderz\\frontend\\templates\\frontend\\index.html"
+    "baseUrl": "C:\\Users\\nahom\\Documents\\GitHub\\FoodFinderz\\build\\index.html"
   }
 }
