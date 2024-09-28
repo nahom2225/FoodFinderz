@@ -2,7 +2,7 @@ from django.db import models
 import string
 import random
 from datetime import timezone, datetime
-from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.contrib.auth.models import AbstractUser, Group, Permission, PermissionsMixin, BaseUserManager, User
 
 # Create your models here.
 #Every model has a primary key, the id, it is a unique integer
@@ -50,11 +50,25 @@ class Post(models.Model):
     #votes = upvotes - downvotes
 
 
+class AccountManager(BaseUserManager):
+    def create_user(self, username, password=None, **extra_fields):
+        if not username:
+            raise ValueError('The Username field must be set')
+        user = self.model(username=username, **extra_fields)
+        user.set_password(password)  # This hashes the password
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, username, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self.create_user(username, password, **extra_fields)
+
 class Account(AbstractUser):
-    current_session = models.CharField(max_length=50, default = "")
-    account_id = models.CharField(max_length = 15, default=generate_unique_id)
+    current_session = models.CharField(max_length=50, default="")
+    account_id = models.CharField(max_length=15, default=generate_unique_id)
     created_at = models.DateTimeField(auto_now_add=True)
-    last_login = models.DateTimeField(auto_now_add=True)
+    last_login = models.DateTimeField(auto_now=True)  # Corrected this line
     posts = models.ManyToManyField(Post, related_name='posts')
     upvoted_posts = models.ManyToManyField(Post, related_name='upvoted_posts')
     downvoted_posts = models.ManyToManyField(Post, related_name='downvoted_posts')    
@@ -62,7 +76,7 @@ class Account(AbstractUser):
         Group,
         related_name='account_groups',
         blank=True,
-        help_text = (
+        help_text=(
             'The groups this user belongs to. A user will get all permissions granted to each of their groups.'
         ),
         related_query_name='user',
@@ -76,6 +90,14 @@ class Account(AbstractUser):
         related_query_name='user',
     )
 
+    objects = AccountManager()  # Set the custom manager
+
+    @property
+    def backend(self):
+        return 'django.contrib.auth.backends.ModelBackend'
+
+    class Meta:
+        db_table = 'account'  # Optional: Specify custom table name if needed
 
 
 

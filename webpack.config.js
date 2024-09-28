@@ -51,4 +51,10 @@ module.exports = {
       },
     }),
   ],
+  devServer: {
+    contentBase: path.resolve(__dirname, "build"),
+    hot: true,
+    historyApiFallback: true,  // Helps with React Router and client-side routing
+  },
+  
 };

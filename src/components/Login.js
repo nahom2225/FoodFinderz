@@ -20,8 +20,8 @@ export default function Login(props) {
     const[username, setUsername] = useState('');
     const[password, setPassword] = useState('');
     const[error, setError] = useState('');
-    const[user_error, setUserError] = useState('');
-    const[pass_error, setPassError] = useState('');
+    const[user_error, setUserError] = useState(false);
+    const[pass_error, setPassError] = useState(false);
     const[showPassword, setShowPassword] = useState(false);
     const[csrftoken, setCsrftoken] = useState(0);
 

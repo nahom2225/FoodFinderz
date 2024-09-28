@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Account, Post
+from django.contrib.auth import get_user_model
 
 #Takes models with all python related code, and translates to a JSON resposne
 #Takes keys turns to strings
@@ -20,10 +21,9 @@ class CreateAccountSerializer(serializers.ModelSerializer):
         model = Account
         fields = ('username', 'password', 'account_id')
 
-class LoginAccountSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Account
-        fields = ('username', 'password')
+class LoginAccountSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(write_only=True)
 
 class CreatePostSerializer(serializers.ModelSerializer): 
     class Meta:
@@ -49,4 +49,4 @@ class GetPostSerializer(serializers.ModelSerializer):
 class AccountPage(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ('username')
+        fields = ('username', )
